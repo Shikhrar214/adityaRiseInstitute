@@ -6,9 +6,13 @@ function Home() {
     return (
         <>
             <div className='flex  w-full '>
-                <div className='mx-auto'><img 
+
+
+                <div className='mx-auto hidden md:block'><img 
                 className='h-52 w-52'
                 src={Logo} alt="" /></div>
+
+
                 <div className='mx-auto'>
                     <aside className='mx-auto text-center content-center justify-center'>
                             <div className='my-5'>

@@ -1,4 +1,4 @@
-import { About, AdminRegister, AdminDashboard, Contect, Courses, Gallary, Home, Layout, Register, StudentRegistration, AllAdmin, AllStudents, AdminHome, AddCourse } from './index'
+import { About, AdminRegister, AdminDashboard, Contect, Courses, Gallary, Home, Layout, Register, StudentRegistration, AllAdmin, AllStudents, AdminHome, AddCourse, Login, AdminLogin, StudentLogin } from './index'
 import { createBrowserRouter, RouterProvider } from "react-router";
 
 function App() {
@@ -62,6 +62,20 @@ function App() {
               element: <AddCourse />
             }
           ],
+        },
+        {
+          path: "login",
+          element: <Login />,
+          children: [
+            {
+              path: "adminlogin",
+              element: <AdminLogin />
+            },
+            {
+              path: "",
+              element: <StudentLogin />
+            }
+          ]
         }
       ]
     }

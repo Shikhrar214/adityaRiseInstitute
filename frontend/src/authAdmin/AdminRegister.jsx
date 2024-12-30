@@ -5,6 +5,7 @@ function AdminRegister() {
     const [formData, setFormData] = useState({
             fullName: '',
             email: '',
+            role: 'Admin',
             photo: null,
             mobileNumber: '',
             address: '',
@@ -58,7 +59,7 @@ function AdminRegister() {
                         name="fullName"
                         value={formData.fullName}
                         onChange={handleChange}
-                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                         required
                         />
                     </div>
@@ -70,10 +71,27 @@ function AdminRegister() {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                         required
                         />
                     </div>
+
+                    {/*  */}
+                        <div>
+                            <label className="block mb-2">Role</label>
+                            <select
+                                name="role"
+                                className="w-full p-2 border rounded-md"
+                                value={formData.role}
+                                onChange={handleChange}
+                                required
+                            >
+                                <option value="Admin">Admin</option>
+                                <option value="sAdmin">SuperAdmin</option>
+                                
+                            </select>
+                        </div>
+                    {/*  */}
             
                     <div>
                         <label className="block text-gray-600 mb-1">Photo</label>
@@ -81,7 +99,7 @@ function AdminRegister() {
                         type="file"
                         name="photo"
                         onChange={handleChange}
-                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                         accept="image/*"
                         required
                         />
@@ -94,7 +112,7 @@ function AdminRegister() {
                         name="mobileNumber"
                         value={formData.mobileNumber}
                         onChange={handleChange}
-                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                         required
                         />
                     </div>
@@ -105,7 +123,7 @@ function AdminRegister() {
                         name="address"
                         value={formData.address}
                         onChange={handleChange}
-                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                         required
                         ></textarea>
                     </div>
@@ -117,7 +135,7 @@ function AdminRegister() {
                         name="branchName"
                         value={formData.branchName}
                         onChange={handleChange}
-                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                         required
                         />
                     </div>
@@ -129,7 +147,7 @@ function AdminRegister() {
                         name="branchLocation"
                         value={formData.branchLocation}
                         onChange={handleChange}
-                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                         required
                         />
                     </div>
@@ -141,7 +159,7 @@ function AdminRegister() {
                         name="aadharNumber"
                         value={formData.aadharNumber}
                         onChange={handleChange}
-                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                         required
                         />
                     </div>
@@ -153,14 +171,14 @@ function AdminRegister() {
                         name="password"
                         value={formData.password}
                         onChange={handleChange}
-                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                         required
                         />
                     </div>
             
                     <button
                         type="submit"
-                        className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200"
+                        className="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition duration-200"
                     >
                         Register
                     </button>

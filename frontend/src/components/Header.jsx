@@ -68,7 +68,7 @@ function Header() {
                             <li className="md:mx-2">
                                 <NavLink
                                 className={({isActive})=>` block py-2 pr-4 pl-3 duration-200  border-b ${isActive ?"text-orange-700":"text-gray-700"} border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`}
-                                
+                                to={"login"}
                                 >
                                 Login
                                 </NavLink>
@@ -150,6 +150,20 @@ function Header() {
                         className="block text-gray-800 hover:text-orange-700 transition"
                         >
                         Student Register
+                        </NavLink>
+
+                        <NavLink
+                        to={"/login"}
+                        className="block text-gray-800 hover:text-orange-700 transition"
+                        >
+                        Login
+                        </NavLink>
+
+                        <NavLink
+                        to={"/logout"}
+                        className="block text-gray-800 hover:text-orange-700 transition"
+                        >
+                        Logout
                         </NavLink>
                     </div>
                     </div>

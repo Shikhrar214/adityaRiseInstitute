@@ -60,7 +60,7 @@ const StudentRegistration = () => {
               <input
                 type="text"
                 name="fullName"
-                className="w-full p-2 border rounded-md"
+                className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                 value={formData.fullName}
                 onChange={handleChange}
                 required
@@ -71,7 +71,7 @@ const StudentRegistration = () => {
               <input
                 type="text"
                 name="fatherName"
-                className="w-full p-2 border rounded-md"
+                className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                 value={formData.fatherName}
                 onChange={handleChange}
                 required
@@ -82,7 +82,7 @@ const StudentRegistration = () => {
               <input
                 type="text"
                 name="motherName"
-                className="w-full p-2 border rounded-md"
+                className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                 value={formData.motherName}
                 onChange={handleChange}
                 required
@@ -93,7 +93,7 @@ const StudentRegistration = () => {
               <input
                 type="date"
                 name="dob"
-                className="w-full p-2 border rounded-md"
+                className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                 value={formData.dob}
                 onChange={handleChange}
                 required
@@ -135,7 +135,7 @@ const StudentRegistration = () => {
               <label className="block mb-2">Course</label>
               <select
                 name="course"
-                className="w-full p-2 border rounded-md"
+                className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                 value={formData.course}
                 onChange={handleChange}
                 required
@@ -150,7 +150,7 @@ const StudentRegistration = () => {
               <label className="block mb-2">Category</label>
               <select
                 name="category"
-                className="w-full p-2 border rounded-md"
+                className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                 value={formData.category}
                 onChange={handleChange}
                 required
@@ -166,7 +166,7 @@ const StudentRegistration = () => {
               <input
                 type="text"
                 name="address"
-                className="w-full p-2 border rounded-md"
+                className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                 value={formData.address}
                 onChange={handleChange}
                 required
@@ -177,7 +177,7 @@ const StudentRegistration = () => {
               <input
                 type="text"
                 name="post"
-                className="w-full p-2 border rounded-md"
+                className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                 value={formData.post}
                 onChange={handleChange}
                 required
@@ -188,7 +188,7 @@ const StudentRegistration = () => {
               <input
                 type="text"
                 name="district"
-                className="w-full p-2 border rounded-md"
+                className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                 value={formData.district}
                 onChange={handleChange}
                 required
@@ -199,7 +199,7 @@ const StudentRegistration = () => {
               <input
                 type="text"
                 name="state"
-                className="w-full p-2 border rounded-md"
+                className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                 value={formData.state}
                 onChange={handleChange}
                 required
@@ -210,7 +210,7 @@ const StudentRegistration = () => {
               <input
                 type="text"
                 name="pincode"
-                className="w-full p-2 border rounded-md"
+                className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                 value={formData.pincode}
                 onChange={handleChange}
                 required
@@ -221,7 +221,7 @@ const StudentRegistration = () => {
               <input
                 type="text"
                 name="mobile"
-                className="w-full p-2 border rounded-md"
+                className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                 value={formData.mobile}
                 onChange={handleChange}
                 required
@@ -232,7 +232,7 @@ const StudentRegistration = () => {
               <input
                 type="text"
                 name="aadhar"
-                className="w-full p-2 border rounded-md"
+                className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                 value={formData.aadhar}
                 onChange={handleChange}
                 required
@@ -253,7 +253,7 @@ const StudentRegistration = () => {
               <input
                 type="file"
                 name="signature"
-                className="w-full p-2 border rounded-md"
+                className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                 onChange={handleFileChange}
                 required
               />
@@ -261,7 +261,7 @@ const StudentRegistration = () => {
           </div>
           <button
             type="submit"
-            className="mt-5 w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"
+            className="mt-5 w-full bg-orange-500 text-white py-2 rounded-md hover:bg-orange-600"
           >
             Submit
           </button>

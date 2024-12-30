@@ -1,14 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css"
+import {AbhayPandey, AvneeshPandey, Logo, RavinderVerma} from '../assets/images.js'
 
-   
 function Gallary() {
+    const images = [
+        {
+          original: RavinderVerma,
+          thumbnail: RavinderVerma,
+        },
+        {
+          original: AbhayPandey,
+          thumbnail: AbhayPandey,
+        },
+        {
+          original: AvneeshPandey,
+          thumbnail: AvneeshPandey,
+        },
+        {
+          original: Logo,
+          thumbnail: Logo,  
+        },
+      ];
+    
+
+
     return (
         <>
-        <div className='bg-slate-700  py-3 h-screen'>
-            <h1 className=' text-center text-3xl font-mono font-semibold'>Gallary</h1>
-
-            
-        </div>
+            <div className=''>
+                
+                <ImageGallery  items={images} />;
+            </div>
         </>
     )
 }
