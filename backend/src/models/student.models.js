@@ -3,6 +3,10 @@ import mongoose, {Schema} from "mongoose";
 
 const studentSchema = new Schema (
     {
+
+        ID: {
+            type: Number,
+        },
         fullName: {
             type: String,
             required: true,
@@ -113,5 +117,16 @@ const studentSchema = new Schema (
         timestamps: true
     }
 )
+
+
+export function generateRegistrationId(length) {
+    let id = '';
+    const characters = '0123456789';
+    for (let i = 0; i < length; i++) {
+        id += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return id;
+}
+
 
 export const student = mongoose.model("student", studentSchema);

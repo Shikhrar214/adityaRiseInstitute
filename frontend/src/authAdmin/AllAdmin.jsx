@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import moment from 'moment'
 import axios from 'axios'
 
 function AllAdmin() {
@@ -27,7 +28,7 @@ function AllAdmin() {
                             <div 
                             className='bg-slate-500 p-8 m-4 rounded-2xl flex'
                             key={data._id}>
-                                <div>
+                                {/* <div>
                                 <h2>{data.fullName}</h2>
                                 <h6>{data._id}</h6>
                                 <h6>{data.email}</h6>
@@ -37,51 +38,54 @@ function AllAdmin() {
                                 <h6>{data.branchName}</h6>
                                 <h6>{data.branchLocation}</h6>
                                 <h6>{data.aadhar}</h6>
-                                {/* <h6>{data.password}</h6> */}
+                                <h6>{data.password}</h6> 
                                 <h6>{data.createdAt}</h6>
                                 <h6>{data.updatedAt}</h6>
                                 <h6>{data.__v}</h6>
+                                </div> */}
+
+
+                                <div>
+                                    <div className='bg-white h-60 w-60 rounded-2xl mx-4'>
+                                    {data.photo}
+                                    </div>
                                 </div>
+
+
                                 <div className='w-full text-white  '>
-                                    <h1 className='text-center bg-slate-950'>Recieved Amount</h1>
+                                    <h1 className='text-center bg-slate-950'>{data.fullName}</h1>
                                     <div >
                                         
                                         <table>
                                             <tr>
-                                                <td>&nbsp;</td>
-                                                <td>Knocky</td>
-                                                <td>Flor</td>
-                                                <td>Ella</td>
-                                                <td>Juan</td>
+                                                <td>Email: </td>
+                                                <td>{data.email}</td>
+                                                
+                                                <td>Phone:</td>
+                                                <td>{data.mobileNumber}</td>
                                             </tr>
                                             <tr>
-                                                <td>Breed</td>
-                                                <td>Jack Russell</td>
-                                                <td>Poodle</td>
-                                                <td>Streetdog</td>
-                                                <td>Cocker Spaniel</td>
+                                                <td>Aadhar: </td>
+                                                <td>{data.aadhar}</td>
+                                                
+                                                <td>Created: </td>
+                                                <td>{moment(data.createdAt).format("DD-MM-YYYY")}</td>
                                             </tr>
                                             <tr>
-                                                <td>Age</td>
-                                                <td>16</td>
-                                                <td>9</td>
-                                                <td>10</td>
-                                                <td>5</td>
+                                                <td>Last Updated: </td>
+                                                <td>{moment(data.updatedAt).format("DD-MM-YYYY")}</td>
+                                                
+                                                <td>Branch: </td>
+                                                <td>{data.branchName}</td>
                                             </tr>
                                             <tr>
-                                                <td>Owner</td>
-                                                <td>Mother-in-law</td>
-                                                <td>Me</td>
-                                                <td>Me</td>
-                                                <td>Sister-in-law</td>
+                                                <td>Branch Location: </td>
+                                                <td>{data.branchLocation}</td>
+                                                
+                                                <td>Full Address: </td>
+                                                <td>{data.fullAddress}</td>
                                             </tr>
-                                            <tr>
-                                                <td>Eating Habits</td>
-                                                <td>Eats everyone's leftovers</td>
-                                                <td>Nibbles at food</td>
-                                                <td>Hearty eater</td>
-                                                <td>Will eat till he explodes</td>
-                                            </tr>
+                                            
                                         </table>
 
                                         

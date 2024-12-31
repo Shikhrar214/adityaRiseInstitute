@@ -1,4 +1,4 @@
-import { student } from "../models/student.models.js";
+import { student,generateRegistrationId } from "../models/student.models.js";
 
 // get all students
 

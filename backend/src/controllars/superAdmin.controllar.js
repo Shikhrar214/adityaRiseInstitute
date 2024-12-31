@@ -52,8 +52,8 @@ const getAllSuperAdmin = async (req, res)=>{
 // create Super Admin
 const createSuperAdmin = async (req, res) => {
     try {
-        const {fullName,email, photo, mobileNumber, fullAddress, branchName, branchLocation, aadhar, password} = req.body;
-        const newSuperAdmin = new superAdmin({fullName,email, photo, mobileNumber, fullAddress, branchName, branchLocation, aadhar, password});
+        const {fullName,email, role, photo, mobileNumber, fullAddress, branchName, branchLocation, aadhar, password} = req.body;
+        const newSuperAdmin = new superAdmin({fullName,email, role, photo, mobileNumber, fullAddress, branchName, branchLocation, aadhar, password});
         await newSuperAdmin.save();
         
         res.status(200).json({
@@ -177,5 +177,13 @@ const logoutSuperAdmin = () => {}
 
 
 
-export {getAllSuperAdmin, createSuperAdmin, updateSuperAdmin, deleteSuperAdmin}
+export {
+    getAllSuperAdmin, 
+    createSuperAdmin, 
+    updateSuperAdmin, 
+    deleteSuperAdmin,
+    loginSuperAdmin,
+    logoutSuperAdmin,
+
+}
 

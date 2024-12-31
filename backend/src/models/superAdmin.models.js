@@ -19,6 +19,9 @@ const superAdminSchema = new Schema (
             unique: true,
             max: 50
         },
+        role: {
+            type: String
+        },
         photo: {
             type: String  //cloudinery service
         },

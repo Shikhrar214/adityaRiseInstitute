@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import moment from 'moment';
 import axios from 'axios'
 
 function AllStudents() {
@@ -39,8 +40,8 @@ function AllStudents() {
                             </div>
                             
                             
-                            <h1><span className='text-orange-900'>Registration Date</span>{data.createdAt}</h1>
-                            <h1><span className='text-orange-900'>Last Updation</span>{data.updatedAt}</h1> 
+                            <h1><span className='text-orange-900'>Registration Date: </span>{moment(data.createdAt).format("DD-MM-YYYY")}</h1>
+                            <h1><span className='text-orange-900'>Last Updation: </span>{moment(data.updatedAt).format("DD-MM-YYYY")}</h1> 
                         <div>
 
                         </div>
@@ -56,7 +57,7 @@ function AllStudents() {
                                                 <td>ID :</td>
                                                 <td>{data._id}</td>
                                                 <td>DOB :</td>
-                                                <td>{data.dob}</td>
+                                                <td>{moment(data.dob).format("DD-MM-YYYY")} </td>
                                                 
                                             </tr>
                                             <tr>
