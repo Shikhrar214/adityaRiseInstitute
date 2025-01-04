@@ -1,29 +1,21 @@
 import express from "express";
 import { Router } from "express";
 import { getAllSuperAdmin, createSuperAdmin, updateSuperAdmin, deleteSuperAdmin } from "../controllars/superAdmin.controllar.js";
-import { getAllStudents, createStudents, updateStudents, deleteStudents } from "../controllars/student.controllar.js";
+import { upload } from "../middleware/multer.middelware.js";
 
-const router = express.Router()
 
-router.get("/superadmin", getAllSuperAdmin);
+const sAdminrouter = express.Router()
 
-router.post("/superadmin", createSuperAdmin );
+sAdminrouter.get("/superadmin", getAllSuperAdmin);
 
-router.put("/superadmin/:id", updateSuperAdmin);
+sAdminrouter.post("/superadmin", upload.single('photo'), createSuperAdmin );
 
-router.delete("/superadmin/:id", deleteSuperAdmin);
+sAdminrouter.put("/superadmin/:id", updateSuperAdmin);
 
-// student router
-
-router.get("/student",getAllStudents);
-
-router.post("/student", createStudents);
-
-router.put("/student",updateStudents);
-
-router.delete("/student",deleteStudents);
+sAdminrouter.delete("/superadmin/:id", deleteSuperAdmin);
 
 
 
 
-export {router}
+
+export {sAdminrouter}

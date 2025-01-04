@@ -1,14 +1,19 @@
 import React, { useState } from "react";
+import axios from 'axios'
+
 
 const StudentRegistration = () => {
+  const [studentID, setStudentID] = useState ("");
+  let [count, setCount] = useState(0);
   const [formData, setFormData] = useState({
+    
     fullName: "",
     fatherName: "",
     motherName: "",
     dob: "",
     gender: "",
     course: "CCC",
-    category: "GENERAL",
+    category: "SC",
     address: "",
     post: "",
     district: "",
@@ -36,12 +41,28 @@ const StudentRegistration = () => {
     }));
   };
 
+
+
+  const genrateNewStudentID = () => {
+
+     
+    setStudentID(`ARCI${Date.now()}`)
+    console.log("GenratedStudentid : ", studentID);
+    
+  }
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log(formData);
+    e.preventDefault();    
+    genrateNewStudentID()
+    const dataToSend = {...formData, ID: studentID}
+    console.log(dataToSend);
+
     try {
-      const res = await fetch("http://localhost:4000/api/student");
-      res.save()
+      async ()=>{
+        await axios.post("api/student", dataToSend)
+        console.log("Data Sent Sucessfully");
+        
+      }
     } catch (error) {
       console.log(error);
       
@@ -140,6 +161,7 @@ const StudentRegistration = () => {
                 onChange={handleChange}
                 required
               >
+                 <option value="Select">Select</option>
                 <option value="CCC">CCC</option>
                 <option value="ADCA">ADCA</option>
                 <option value="BCA">BCA</option>
@@ -155,6 +177,7 @@ const StudentRegistration = () => {
                 onChange={handleChange}
                 required
               >
+                <option value="Select">Select</option>
                 <option value="GENERAL">GENERAL</option>
                 <option value="OBC">OBC</option>
                 <option value="SC">SC</option>

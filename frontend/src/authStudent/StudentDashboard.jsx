@@ -9,5 +9,5 @@ function StudentDashboard() {
         </>
     )
 }
-w
+
 export default StudentDashboard

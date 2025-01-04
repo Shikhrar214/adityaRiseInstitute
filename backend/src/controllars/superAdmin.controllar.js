@@ -1,5 +1,5 @@
 import { superAdmin } from "../models/superAdmin.models.js";
-
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 // BUSSINESS LOGIC
 
@@ -52,8 +52,43 @@ const getAllSuperAdmin = async (req, res)=>{
 // create Super Admin
 const createSuperAdmin = async (req, res) => {
     try {
-        const {fullName,email, role, photo, mobileNumber, fullAddress, branchName, branchLocation, aadhar, password} = req.body;
-        const newSuperAdmin = new superAdmin({fullName,email, role, photo, mobileNumber, fullAddress, branchName, branchLocation, aadhar, password});
+
+       
+        
+        const {fullName, email, role, mobileNumber, fullAddress, branchName, branchLocation, aadhar, password} = req.body;
+         
+          
+        
+        
+            
+        const sAdminPhotoLocalPath =  req.file?.path ;
+        
+        
+            
+        // if photo local path not found
+        if (!sAdminPhotoLocalPath) {
+            res.status(500).json({
+                status: false,
+                message: "Admin photo local path not found"
+            })
+        }
+
+        console.log("Local path of Admin: ",sAdminPhotoLocalPath);
+
+       
+        // cloudinary upload
+        const sAdminPhoto = await uploadOnCloudinary(sAdminPhotoLocalPath)
+        
+
+        const photo = sAdminPhoto.url
+        
+        
+        
+        
+        
+        const newSuperAdmin = new superAdmin({fullName,email, role, photo ,  mobileNumber, fullAddress, branchName, branchLocation, aadhar, password});
+
+    //    create super admin
         await newSuperAdmin.save();
         
         res.status(200).json({
@@ -61,7 +96,7 @@ const createSuperAdmin = async (req, res) => {
             superAdmin: newSuperAdmin
         })
     } catch (error) {
-        res.status(200).json(
+        res.status(500).json(
             {
                 sucess: false,
                 message: error

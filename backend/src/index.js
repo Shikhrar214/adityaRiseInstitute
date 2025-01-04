@@ -11,7 +11,7 @@ app.use(express.json())
 
 connectDB()
 .then(app.listen(process.env.PORT || 3001,(req, res)=>{
-    console.log(req, res,"app is running on port -----------------", process.env.PORT);
+    console.log("app is running on port -----------------", process.env.PORT);
     
 }))
 

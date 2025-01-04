@@ -10,7 +10,7 @@ function AllAdmin() {
         .then((res)=>{
             console.log(res.data.superAdmin);
             setData(res.data.superAdmin)
-            console.log("all admins are ? : ",res.data.sucess);
+            console.log("all admins are ? : ",res.data);
             
         })  
     },[])
@@ -28,26 +28,15 @@ function AllAdmin() {
                             <div 
                             className='bg-slate-500 p-8 m-4 rounded-2xl flex'
                             key={data._id}>
-                                {/* <div>
-                                <h2>{data.fullName}</h2>
-                                <h6>{data._id}</h6>
-                                <h6>{data.email}</h6>
-                                <h6>{data.photo}</h6>
-                                <h6>{data.mobileNumber}</h6>
-                                <h6>{data.fullAddress}</h6>
-                                <h6>{data.branchName}</h6>
-                                <h6>{data.branchLocation}</h6>
-                                <h6>{data.aadhar}</h6>
-                                <h6>{data.password}</h6> 
-                                <h6>{data.createdAt}</h6>
-                                <h6>{data.updatedAt}</h6>
-                                <h6>{data.__v}</h6>
-                                </div> */}
+                                
 
 
                                 <div>
                                     <div className='bg-white h-60 w-60 rounded-2xl mx-4'>
-                                    {data.photo}
+                                    {/* {data.photo} */}
+                                    <img 
+                                    className='w-full h-full'
+                                    src={data.photo} alt="" />
                                     </div>
                                 </div>
 

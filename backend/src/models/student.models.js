@@ -5,7 +5,8 @@ const studentSchema = new Schema (
     {
 
         ID: {
-            type: Number,
+            type: String,
+            required: true
         },
         fullName: {
             type: String,

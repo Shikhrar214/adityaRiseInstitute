@@ -5,6 +5,7 @@ import { student,generateRegistrationId } from "../models/student.models.js";
 const getAllStudents = async (req,res) => {
     try {
         const allStudents = await student.find();
+        
         if (!allStudents || allStudents.length === 0) {
             res.status(200).json({
                 sucess: false,
@@ -29,9 +30,9 @@ const getAllStudents = async (req,res) => {
 // create student
 const createStudents = async (req,res) => {
     try {
-        const { fullName, fatherName, motherName, dob, gender, course, category, address, post, district, state, pincode, mobile, aadhar, photo, signature } = req.body; 
+        const { ID, fullName, fatherName, motherName, dob, gender, course, category, address, post, district, state, pincode, mobile, aadhar, photo, signature } = req.body; 
 
-        const newStudent = new student({fullName, fatherName, motherName, dob, gender, course, category, address, post, district, state, pincode, mobile, aadhar, photo, signature});
+        const newStudent = new student({ID, fullName, fatherName, motherName, dob, gender, course, category, address, post, district, state, pincode, mobile, aadhar, photo, signature});
         await newStudent.save();
 
         // if done

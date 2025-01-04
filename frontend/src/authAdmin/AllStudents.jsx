@@ -33,7 +33,9 @@ function AllStudents() {
                     >
                        <div>
                             <div className='h-36 w-36 bg-cyan-200'>
-                                <h1>{data.photo}</h1>
+                                <img
+                                className='w-full h-full'
+                                src={data.photo} alt="" />
                             </div>
                             <div className='h-10 w-36 bg-zinc-200'>
                                 <h1>{data.signature}</h1>
@@ -55,7 +57,7 @@ function AllStudents() {
                                         <table>
                                             <tr>
                                                 <td>ID :</td>
-                                                <td>{data._id}</td>
+                                                <td>{data.ID}</td>
                                                 <td>DOB :</td>
                                                 <td>{moment(data.dob).format("DD-MM-YYYY")} </td>
                                                 
