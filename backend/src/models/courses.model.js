@@ -44,7 +44,7 @@ const coursesSchema = new Schema({
         min: 3,
         max: 30
     },
-    nexttBatchDate: {
+    nextBatchDate: {
         type: String,
         required: true,
         index: true,

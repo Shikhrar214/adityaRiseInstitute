@@ -1,4 +1,4 @@
-import { student,generateRegistrationId } from "../models/student.models.js";
+import { student } from "../models/student.models.js";
 
 // get all students
 
@@ -30,9 +30,34 @@ const getAllStudents = async (req,res) => {
 // create student
 const createStudents = async (req,res) => {
     try {
-        const { ID, fullName, fatherName, motherName, dob, gender, course, category, address, post, district, state, pincode, mobile, aadhar, photo, signature } = req.body; 
+        const { ID, fullName, fatherName, motherName, dob, gender, course, category, address, post, district, state, pincode, mobile, aadhar, password, photo, signature } = req.body; 
 
-        const newStudent = new student({ID, fullName, fatherName, motherName, dob, gender, course, category, address, post, district, state, pincode, mobile, aadhar, photo, signature});
+        try {
+            const alreadyRegisteredStudent = await student.findOne({$or: [{ID: ID},{aadhar: aadhar}]})
+            if (alreadyRegisteredStudent) {
+                
+                return res.status(400).json({
+                    sucess: false,
+                    message: "student is already registered",
+                    student: alreadyRegisteredStudent
+                    
+                })
+            }
+        } catch (error) {
+            res.status(500).json({
+                message: "internal server error"
+            })
+        }
+
+        const sImageLocalPath = req.files?.studentImage?.path;
+        console.log("sImageLocalPath: ", sImageLocalPath);
+
+        const sSignaturePhoto = req.files?.signImage?.path;
+        console.log("sSignaturePath: ", sSignaturePhoto);
+        
+        
+        // creating new student
+        const newStudent = new student({ID, fullName, fatherName, motherName, dob, gender, course, category, address, post, district, state, pincode, mobile, aadhar, password, photo, signature});
         await newStudent.save();
 
         // if done
@@ -43,7 +68,7 @@ const createStudents = async (req,res) => {
     } catch (error) {
         res.status(500).json({
             sucess: false,
-            message: "internal server error",
+            message: "internal server error: Check Error",
             error,
         })
     }

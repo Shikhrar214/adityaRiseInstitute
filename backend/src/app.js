@@ -1,3 +1,4 @@
+import dotenv from 'dotenv'
 import express, { urlencoded } from 'express'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
@@ -6,12 +7,9 @@ import cors from 'cors'
 const app = express()
 
 // middleware
-app.use(cors({
-    origin: process.env.CORSE_ORIGIN,
-    credentials: true
-}))
+app.use(cors())
 app.use(express.json())
-app.use(urlencoded({extended: false }))
+app.use(urlencoded({extended: true }))
 app.use(cookieParser())
 
 
@@ -32,7 +30,7 @@ app.use("/api", courseRouter)
 
 // /api/superadmin -----> 
 app.get("/",(req, res)=>{
-    res.send("<h1>hello you are on home route </h1>")
+    res.send("<h1>hello </br> you are WELCOME! </h1>")
 })
 
 

@@ -21,9 +21,18 @@ const StudentRegistration = () => {
     pincode: "",
     mobile: "",
     aadhar: "",
+    password: "",
     photo: null,
     signature: null,
   });
+
+  const [showPassword, setShowPassword] = useState(false)
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
+
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -260,6 +269,29 @@ const StudentRegistration = () => {
                 onChange={handleChange}
                 required
               />
+            </div>
+            <div>
+              <label className="block mb-2">Password</label>
+              <div className="flex items-center">
+                
+                <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                />
+                <button 
+                onClick={togglePasswordVisibility}
+                >
+                  {
+                    showPassword?(<span>🙈</span>):(<span>👁️</span>)
+                  }
+                </button>
+
+              </div>
+              
             </div>
             <div>
               <label className="block mb-2">Upload Photo</label>

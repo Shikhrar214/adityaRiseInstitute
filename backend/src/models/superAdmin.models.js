@@ -23,7 +23,8 @@ const superAdminSchema = new Schema (
             type: String
         },
         photo: {
-            type: String  //cloudinery service
+            type: String,  //cloudinery service
+            required: true
         },
         mobileNumber: {
             type: Number,

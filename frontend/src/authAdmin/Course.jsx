@@ -1,22 +1,32 @@
 import React, { useState } from 'react'
-
+import axios from 'axios'
 
 function Course() {
 
     const [courseData, setCourseData] = useState({
         thumbnail: "",
-        tutorName: "",
-        actualPrice: "",
-        discpountedPrice: "",
+        tutor: "",
+        price: "",
+        discountedPrice: "",
         message: "",
         lastDate: "",
-        nextBatch: "",
+        nextBatchDate: "",
         discription: "",
     })
 
-    const handelSubmit = (e) => {
+    const handelSubmit =  async (e) => {
         e.preventDefault()
+        try {
+            const res = await axios.post("/api/course", courseData);
+            console.log(res);
+            
+        } catch (error) {
+            console.log("err: ",error.response.data);
+            alert("smoething went erong")
+            return
+        }
         console.log(courseData);
+        alert("course added sucessfully!")
         
     }
 
@@ -55,8 +65,8 @@ function Course() {
                                     <input 
                                     className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                                     type="text" 
-                                    name="tutorName" 
-                                    value={courseData.tutorName}
+                                    name="tutor" 
+                                    value={courseData.tutor}
                                     onChange={handleChange}
                                     required
                                     />
@@ -68,8 +78,8 @@ function Course() {
                                     <input 
                                     className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                                     type="number" 
-                                    name="actualPrice" 
-                                    value={courseData.actualPrice}
+                                    name="price" 
+                                    value={courseData.price}
                                     onChange={handleChange}
                                     required
                                     />
@@ -83,8 +93,8 @@ function Course() {
                                         <input 
                                         className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                                         type="text" 
-                                        name="discpountedPrice" 
-                                        value={courseData.discpountedPrice}
+                                        name="discountedPrice" 
+                                        value={courseData.discountedPrice}
                                         onChange={handleChange}
 
                                         />
@@ -121,8 +131,8 @@ function Course() {
                                 <input 
                                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                                 type="Date" 
-                                name="nextBatch" 
-                                value={courseData.nextBatch}
+                                name="nextBatchDate" 
+                                value={courseData.nextBatchDate}
                                 onChange={handleChange}
 
                                 />

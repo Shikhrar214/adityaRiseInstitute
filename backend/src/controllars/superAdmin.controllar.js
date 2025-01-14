@@ -1,3 +1,4 @@
+import { log } from "console";
 import { superAdmin } from "../models/superAdmin.models.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
@@ -78,6 +79,8 @@ const createSuperAdmin = async (req, res) => {
        
         // cloudinary upload
         const sAdminPhoto = await uploadOnCloudinary(sAdminPhotoLocalPath)
+        console.log(sAdminPhoto);
+        
         
 
         const photo = sAdminPhoto.url

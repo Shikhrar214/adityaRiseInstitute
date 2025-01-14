@@ -104,30 +104,26 @@ const studentSchema = new Schema (
         photo: {
             type: String,
             index: true,
+            required: true
         },
         signature: {
             type: String,
             index: true,
+            required: true,
         },
         password: {
             type: String,
             index: true,
+            required: true,
         }
     },
     {
-        timestamps: true
+        timestamps: true,
     }
 )
 
 
-export function generateRegistrationId(length) {
-    let id = '';
-    const characters = '0123456789';
-    for (let i = 0; i < length; i++) {
-        id += characters.charAt(Math.floor(Math.random() * characters.length));
-    }
-    return id;
-}
+
 
 
 export const student = mongoose.model("student", studentSchema);
