@@ -1,17 +1,22 @@
 import React from 'react'
 import { useState } from 'react';
+import axios from 'axios';
 
 function AdminRegister() {
+
+    
+
+
     const [formData, setFormData] = useState({
             fullName: '',
             email: '',
             role: 'Admin',
             photo: null,
             mobileNumber: '',
-            address: '',
+            fullAddress: '',
             branchName: '',
             branchLocation: '',
-            aadharNumber: '',
+            aadhar: '',
             password: '',
           });
         
@@ -32,26 +37,25 @@ function AdminRegister() {
             e.preventDefault();
             
             try {
-                const response = await fetch("/api/superadmin",{
-                    method: 'POST',
+                const response = await axios.post("/api/superadmin", formData, {
                     headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData)
+                        'Content-Type': 'multipart/form-data',
+                      },
                 })
+                console.log("response: ", response);
+                alert('Form submitted successfully!');
             } catch (error) {
-                console.log(error);
+                console.log("Upload failed: " , error);
                 
             }
-            console.log('Form Data Submitted:', formData);
-            alert('Form submitted successfully!');
+            
           };
     return (
         <>
             <div className="min-h-screen bg-gray-200 flex justify-center items-center">
                 <div className="bg-white p-8 m-8 rounded-lg shadow-lg max-w-md w-full">
                     <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Register</h2>
-                    <form onSubmit={handleSubmit} className="space-y-4">
+                    <form onSubmit={handleSubmit}  enctype="multipart/form-data" className="space-y-4">
                     <div>
                         <label className="block text-gray-600 mb-1">Full Name</label>
                         <input
@@ -118,10 +122,10 @@ function AdminRegister() {
                     </div>
             
                     <div>
-                        <label className="block text-gray-600 mb-1">Full Address</label>
+                        <label className="block text-gray-600 mb-1">Full fullAddress</label>
                         <textarea
-                        name="address"
-                        value={formData.address}
+                        name="fullAddress"
+                        value={formData.fullAddress}
                         onChange={handleChange}
                         className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                         required
@@ -156,8 +160,8 @@ function AdminRegister() {
                         <label className="block text-gray-600 mb-1">Aadhar Number</label>
                         <input
                         type="text"
-                        name="aadharNumber"
-                        value={formData.aadharNumber}
+                        name="aadhar"
+                        value={formData.aadhar}
                         onChange={handleChange}
                         className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                         required

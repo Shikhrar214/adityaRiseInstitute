@@ -38,7 +38,9 @@ function AllStudents() {
                                 src={data.photo} alt="" />
                             </div>
                             <div className='h-10 w-36 bg-zinc-200'>
-                                <h1>{data.signature}</h1>
+                                <div className='w-full h-full overflow-hidden'>
+                                <img src={data.signature} alt="" className='object-cover' />
+                                </div>
                             </div>
                             
                             
@@ -54,59 +56,59 @@ function AllStudents() {
                                     <h1 className='text-center bg-slate-950'>{data.fullName}</h1>
                                     <div >
                                         
-                                        <table>
+                                        <table cellPadding={20} className='w-full h-full'>
                                             <tr>
-                                                <td>ID :</td>
-                                                <td>{data.ID}</td>
-                                                <td>DOB :</td>
-                                                <td>{moment(data.dob).format("DD-MM-YYYY")} </td>
+                                                <td className='text-2xl font-bold'>ID :</td>
+                                                <td className='text-2xl font-semibold'>{data.ID}</td>
+                                                <td className='text-2xl font-bold'>DOB :</td>
+                                                <td className='text-2xl font-semibold'>{moment(data.dob).format("DD-MM-YYYY")} </td>
                                                 
                                             </tr>
                                             <tr>
-                                                <td>Course :</td>
-                                                <td>{data.course}</td>
+                                                <td className='text-2xl font-bold'>Course :</td>
+                                                <td className='text-2xl font-semibold'>{data.course}</td>
 
                                                 
-                                                <td>Category :</td>
-                                                <td>{data.category}</td>
+                                                <td className='text-2xl font-bold'>Category :</td>
+                                                <td className='text-2xl font-semibold'>{data.category}</td>
                                                 
                                             </tr>
                                             <tr>
-                                                <td>Aadhar :</td>
-                                                <td>{data.aadhar}</td>
+                                                <td className='text-2xl font-bold'>Aadhar :</td>
+                                                <td className='text-2xl font-semibold'>{data.aadhar}</td>
                                                 
-                                                <td>Phone :</td>
-                                                <td>{data.mobile}</td>
+                                                <td className='text-2xl font-bold'>Phone :</td>
+                                                <td className='text-2xl font-semibold'>{data.mobile}</td>
                                             </tr>
                                             <tr>
-                                                <td>Gender :</td>
-                                                <td>{data.gender}</td>
+                                                <td className='text-2xl font-bold'>Gender :</td>
+                                                <td className='text-2xl font-semibold'>{data.gender}</td>
                                                 
-                                                <td>Pin Code :</td>
-                                                <td>{data.pincode}</td>
+                                                <td className='text-2xl font-bold'>Pin Code :</td>
+                                                <td className='text-2xl font-semibold'>{data.pincode}</td>
                                             </tr>
                                             <tr>
-                                                <td>Father Name: </td>
-                                                <td>{data.fatherName}</td>
+                                                <td className='text-2xl font-bold'>Father Name: </td>
+                                                <td className='text-2xl font-semibold'>{data.fatherName}</td>
                                                 
-                                                <td>Mother Name: </td>
-                                                <td>{data.motherName}</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>Post: </td>
-                                                <td>{data.post}</td>
-                                                
-                                                <td>District: </td>
-                                                <td>{data.district}</td>
+                                                <td className='text-2xl font-bold'>Mother Name: </td>
+                                                <td className='text-2xl font-semibold'>{data.motherName}</td>
                                             </tr>
 
                                             <tr>
-                                                <td>State: </td>
-                                                <td>{data.state}</td>
+                                                <td className='text-2xl font-bold'>Post: </td>
+                                                <td className='text-2xl font-semibold'>{data.post}</td>
                                                 
-                                                <td>Registration fee</td>
-                                                <td>{data._v}</td>
+                                                <td className='text-2xl font-bold'>District: </td>
+                                                <td className='text-2xl font-semibold'>{data.district}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td className='text-2xl font-bold'>State: </td>
+                                                <td className='text-2xl font-semibold'>{data.state}</td>
+                                                
+                                                <td className='text-2xl font-bold'>Registration fee</td>
+                                                <td className='text-2xl font-semibold'>{data._v}</td>
                                             </tr>
                                         </table>
 

@@ -5,7 +5,6 @@ const storage = multer.diskStorage({
   
   
   destination: function (req, file, cb) {
-    console.log("i am here");
     
     cb(null, './public/images')
   },

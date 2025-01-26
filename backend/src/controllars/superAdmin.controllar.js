@@ -7,22 +7,22 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 // genrate access and refresh token
 
-const genrateAccessAndRefreshToken = async (req, res, sAdminId) => {
-    try {
-        const admin = await superAdmin.findById(sAdminId);
-        const accessToken = admin.genrateAccessToken()
-        const refreshToken = admin.genrateRefreshToken()
+// const genrateAccessAndRefreshToken = async (req, res, sAdminId) => {
+//     try {
+//         const admin = await superAdmin.findById(sAdminId);
+//         const accessToken = admin.genrateAccessToken()
+//         const refreshToken = admin.genrateRefreshToken()
 
-        admin.refreshToken = refreshToken
-        await admin.save({validateBeforeSave: false})
+//         admin.refreshToken = refreshToken
+//         await admin.save({validateBeforeSave: false})
 
-        return {accessToken, refreshToken}
+//         return {accessToken, refreshToken}
 
 
-    } catch (error) {
+//     } catch (error) {
         
-    }
-}
+//     }
+// }
 
 // get all Super admin
 const getAllSuperAdmin = async (req, res)=>{
@@ -54,18 +54,11 @@ const getAllSuperAdmin = async (req, res)=>{
 const createSuperAdmin = async (req, res) => {
     try {
 
-       
-        
         const {fullName, email, role, mobileNumber, fullAddress, branchName, branchLocation, aadhar, password} = req.body;
-         
+           
+        const sAdminPhotoLocalPath =  req.file?.path;
           
-        
-        
-            
-        const sAdminPhotoLocalPath =  req.file?.path ;
-        
-        
-            
+          
         // if photo local path not found
         if (!sAdminPhotoLocalPath) {
             res.status(500).json({
@@ -79,17 +72,24 @@ const createSuperAdmin = async (req, res) => {
        
         // cloudinary upload
         const sAdminPhoto = await uploadOnCloudinary(sAdminPhotoLocalPath)
+        
+        // const photo = sAdminPhoto.url
         console.log(sAdminPhoto);
         
         
+        const newSuperAdmin = new superAdmin({
+            fullName,
+            email, 
+            role, 
+            photo: sAdminPhoto.url,  
+            mobileNumber, 
+            fullAddress, 
+            branchName, 
+            branchLocation, 
+            aadhar, 
+            password
 
-        const photo = sAdminPhoto.url
-        
-        
-        
-        
-        
-        const newSuperAdmin = new superAdmin({fullName,email, role, photo ,  mobileNumber, fullAddress, branchName, branchLocation, aadhar, password});
+        });
 
     //    create super admin
         await newSuperAdmin.save();

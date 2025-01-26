@@ -42,37 +42,37 @@ function AllAdmin() {
 
 
                                 <div className='w-full text-white  '>
-                                    <h1 className='text-center bg-slate-950'>{data.fullName}</h1>
+                                    <h1 className='text-center text-xl bg-slate-950'>{data.fullName}</h1>
                                     <div >
                                         
-                                        <table>
+                                        <table cellPadding={20} className='w-full h-full'>
                                             <tr>
-                                                <td>Email: </td>
-                                                <td>{data.email}</td>
+                                                <td className='text-2xl font-bold'>Email: </td>
+                                                <td className='text-2xl font-semibold'>{data.email}</td>
                                                 
-                                                <td>Phone:</td>
-                                                <td>{data.mobileNumber}</td>
+                                                <td className='text-2xl font-bold'>Phone:</td>
+                                                <td className='text-2xl font-semibold'>{data.mobileNumber}</td>
                                             </tr>
                                             <tr>
-                                                <td>Aadhar: </td>
-                                                <td>{data.aadhar}</td>
+                                                <td className='text-2xl font-bold'>Aadhar: </td>
+                                                <td className='text-2xl font-semibold'>{data.aadhar}</td>
                                                 
-                                                <td>Created: </td>
-                                                <td>{moment(data.createdAt).format("DD-MM-YYYY")}</td>
+                                                <td className='text-2xl font-bold'>Created: </td>
+                                                <td className='text-2xl font-semibold'>{moment(data.createdAt).format("DD-MM-YYYY")}</td>
                                             </tr>
                                             <tr>
-                                                <td>Last Updated: </td>
-                                                <td>{moment(data.updatedAt).format("DD-MM-YYYY")}</td>
+                                                <td className='text-2xl font-bold'>Last Updated: </td>
+                                                <td className='text-2xl font-semibold'>{moment(data.updatedAt).format("DD-MM-YYYY")}</td>
                                                 
-                                                <td>Branch: </td>
-                                                <td>{data.branchName}</td>
+                                                <td className='text-2xl font-bold'>Branch: </td>
+                                                <td className='text-2xl font-semibold'>{data.branchName}</td>
                                             </tr>
                                             <tr>
-                                                <td>Branch Location: </td>
-                                                <td>{data.branchLocation}</td>
+                                                <td className='text-2xl font-bold'>Branch Location: </td>
+                                                <td className='text-2xl font-semibold'>{data.branchLocation}</td>
                                                 
-                                                <td>Full Address: </td>
-                                                <td>{data.fullAddress}</td>
+                                                <td className='text-2xl font-bold'>Full Address: </td>
+                                                <td className='text-2xl font-semibold'>{data.fullAddress}</td>
                                             </tr>
                                             
                                         </table>

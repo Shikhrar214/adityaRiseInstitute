@@ -6,7 +6,6 @@ const StudentRegistration = () => {
   const [studentID, setStudentID] = useState ("");
   let [count, setCount] = useState(0);
   const [formData, setFormData] = useState({
-    
     fullName: "",
     fatherName: "",
     motherName: "",
@@ -52,38 +51,31 @@ const StudentRegistration = () => {
 
 
 
-  const genrateNewStudentID = () => {
-
-     
-    setStudentID(`ARCI${Date.now()}`)
-    console.log("GenratedStudentid : ", studentID);
-    
-  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();    
-    genrateNewStudentID()
-    const dataToSend = {...formData, ID: studentID}
-    console.log(dataToSend);
-
+   
+    
     try {
-      async ()=>{
-        await axios.post("api/student", dataToSend)
-        console.log("Data Sent Sucessfully");
-        
-      }
+      const responce = await axios.post("/api/student", formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })   
+      console.log("responce: ", responce);
+      alert("Form submitted successfully!")
     } catch (error) {
       console.log(error);
+      alert("")
       
     }
-    alert("Form submitted successfully!")
   };
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-5">
       <div className="bg-white p-6 rounded-md shadow-md w-full max-w-2xl">
         <h2 className="text-2xl font-bold mb-5">Student Registration</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} enctype="multipart/form-data"  >
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block mb-2">Full Name</label>
