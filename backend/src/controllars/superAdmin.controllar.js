@@ -7,22 +7,24 @@ import { mailer } from "../utils/nodeMailer.js";
 
 // genrate access and refresh token
 
-// const genrateAccessAndRefreshToken = async (req, res, sAdminId) => {
-//     try {
-//         const admin = await superAdmin.findById(sAdminId);
-//         const accessToken = admin.genrateAccessToken()
-//         const refreshToken = admin.genrateRefreshToken()
+const genrateAccessAndRefreshToken = async (req, res, sAdminId) => {
+    try {
+        const admin = await superAdmin.findById(sAdminId);
+        const accessToken = admin.genrateAccessToken()
+        const refreshToken = admin.genrateRefreshToken()
 
-//         admin.refreshToken = refreshToken
-//         await admin.save({validateBeforeSave: false})
+        admin.refreshToken = refreshToken
+        await admin.save({validateBeforeSave: false})
 
-//         return {accessToken, refreshToken}
+        return {accessToken, refreshToken}
 
 
-//     } catch (error) {
-        
-//     }
-// }
+    } catch (error) {
+        res.status(500).json({
+            message: "internal server error",
+        })
+    }
+}
 
 // get all Super admin
 const getAllSuperAdmin = async (req, res)=>{
