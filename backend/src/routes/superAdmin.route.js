@@ -14,7 +14,7 @@ sAdminrouter.put("/superadmin/:id", updateSuperAdmin);
 
 sAdminrouter.delete("/superadmin/:id", deleteSuperAdmin);
 
-
+// sAdminrouter.post("/superadmin/login", loginSuperAdmin);
 
 
 

@@ -1,6 +1,6 @@
-import { log } from "console";
 import { superAdmin } from "../models/superAdmin.models.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
+import { mailer } from "../utils/nodeMailer.js";
 
 // BUSSINESS LOGIC
 
@@ -55,6 +55,22 @@ const createSuperAdmin = async (req, res) => {
     try {
 
         const {fullName, email, role, mobileNumber, fullAddress, branchName, branchLocation, aadhar, password} = req.body;
+
+        // check admin exist or not
+        let existedAdmin
+
+        try {
+            existedAdmin = await superAdmin.findOne({email})
+            if (existedAdmin) {
+                res.status(400).json({
+                    message: "user already exist",
+                    user: existedAdmin,
+                })
+            }
+        } catch (error) {
+            
+        }
+        
            
         const sAdminPhotoLocalPath =  req.file?.path;
           
@@ -106,6 +122,9 @@ const createSuperAdmin = async (req, res) => {
             }
         )
     }
+
+    // mailer
+    const mailerRes = mailer(email, subject, text)
 }
 
 
@@ -160,53 +179,14 @@ const deleteSuperAdmin = async (req, res) => {
     }
 }
 
-// login super admin
-// get user from ---> req.body;
-// find the super admin
-// password check 
-// access and refresh token
-// send cookies
-const loginSuperAdmin = async (req, res) => {
-    const {email, password} = req.body;
 
-    if(!email) res.status(400).json({sucess: true, message: "email is required !"})
-
-    const sAdmin = await superAdmin.findOne({email});
-
-    if (!sAdmin) {
-        res.status(400).json({
-            success: false,
-            message: "Super Admin is not found please use Valid email!"
-        });
-    };
-
-    const isPassValid = await sAdmin.isPassCorrect(password);
-
-    if(!isPassValid) {
-        res.status(400).json({
-            sucess: false,
-            message: "please enter correct password!"
-        })
-    }
-
-    const {accessToken, refreshToken} = await genrateAccessAndRefreshToken(sAdmin._id);
-
-    const loggedInAdmin = await superAdmin.findById(sAdmin._id).select("-photo -refreshToken")
-
-    const options = {
-        httpOnly: true,
-        secure: true
-    }
-
-    return res
-    .status(200)
-    .cookie("accessToken", accessToken, options)
-    .cookie("refreshToken", refreshToken, options)
-    .json({
-        status: 200,
-        admin: loggedInAdmin, accessToken, refreshToken,
-        message: "Admin Loggedin Successfully!"
-    })
+const loginSuperAdmin = () => {
+    // login super admin
+    // get user from ---> req.body;
+    // find the super admin
+    // password check 
+    // access and refresh token
+    // send cookies
 }
 
 const logoutSuperAdmin = () => {}

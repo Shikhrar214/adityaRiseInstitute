@@ -20,7 +20,9 @@ const superAdminSchema = new Schema (
             max: 50
         },
         role: {
-            type: String
+            type: String,
+            enum: ["superadmin"], 
+            required: true
         },
         photo: {
             type: String,  //cloudinery service
