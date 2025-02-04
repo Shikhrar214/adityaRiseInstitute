@@ -59,15 +59,13 @@ const createSuperAdmin = async (req, res) => {
         const {fullName, email, role, mobileNumber, fullAddress, branchName, branchLocation, aadhar, password} = req.body;
 
         // check admin exist or not
-        let existedAdmin
-
         try {
-            existedAdmin = await superAdmin.findOne({email})
-            if (existedAdmin) {
-                res.status(400).json({
+            const existedSuperAdmin = await superAdmin.findOne({email}).select("-password")
+            if (existedSuperAdmin) {
+                return res.status(400).json({
                     message: "user already exist",
-                    user: existedAdmin,
-                })
+                    user: existedSuperAdmin.toObject()
+                })  
             }
         } catch (error) {
             
@@ -120,13 +118,15 @@ const createSuperAdmin = async (req, res) => {
         res.status(500).json(
             {
                 sucess: false,
-                message: error
+                message: "internal server error",
+                error: error
             }
         )
     }
 
     // mailer
-    const mailerRes = mailer(email, subject, text)
+    // const existedUserEmail = existedAdmin.email;
+    // const mailerRes = mailer()
 }
 
 

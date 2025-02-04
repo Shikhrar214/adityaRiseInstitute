@@ -21,7 +21,7 @@ const superAdminSchema = new Schema (
         },
         role: {
             type: String,
-            enum: ["superadmin"], 
+            enum: ["superadmin", "Admin", "admin", "superAdmin" ], 
             required: true
         },
         photo: {
