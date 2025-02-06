@@ -108,25 +108,38 @@ const createSuperAdmin = async (req, res) => {
         });
 
     //    create super admin
-        await newSuperAdmin.save();
+        const createdUser=  await newSuperAdmin.save();
         
+    //
+    // mailer
+    // get registerd user 
+    // de-construct user {email}
+    // to=email, subject, text
+    const to = createdUser.email
+    const subject = `Registration Successfull`
+    const AdminName = createdUser.fullName
+    const pass = password.trim()
+    const sendMailAfterAdminCreation =  await mailer(to, subject, AdminName, pass ) 
+    console.log(sendMailAfterAdminCreation);
+    
+
+    // send success responce
         res.status(200).json({
             
-            superAdmin: newSuperAdmin
+            superAdmin: newSuperAdmin.select("-password")
         })
     } catch (error) {
         res.status(500).json(
             {
                 sucess: false,
                 message: "internal server error",
-                error: error
+                error: error,
+                
             }
         )
     }
 
-    // mailer
-    // const existedUserEmail = existedAdmin.email;
-    // const mailerRes = mailer()
+    
 }
 
 

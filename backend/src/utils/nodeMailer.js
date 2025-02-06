@@ -1,38 +1,42 @@
-import express, { text } from 'express'
+import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
-import nodemailer from 'nodemailer'
-
-dotenv.config();
+dotenv.config({ path: './.env' });
 
 
-const mailer = async (to, subject, text) => {
+// console.log(process.env.EMAIL_USER, process.env.EMAIL_PASS);
 
-    try {
-        var transport =  nodemailer.createTransport({
-            host: process.env.EMAIL_HOST,
-            port: process.env.EMAIL_PORT,
-            auth: {
-              user: process.env.EMAIL_USER,
-              pass: process.env.EMAIL_PASS
-        
-            }
-        });
-
-        const mailOptions = {
-            from: "Aditya Rise Computer Institute",
-            to,
-            subject,
-            text,
-        }
-
-        const info = await transport.mailer(mailOptions);
-        console.log("mail info :", info.messageId);
-        
-    } catch (error) {
-        console.log("mailer error: ",error||"mailer error");
-        return 1
+const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true, // true for port 465, false for other ports
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+    tls: {
+      rejectUnauthorized: false
     }
-    
+  });
+
+
+const mailer = async (email, subject, fullName, pass) => {
+    try {
+        const info = await transporter.sendMail({
+            from: process.env.EMAIL_USER, 
+            to: email, 
+            subject: subject,
+            text: `hello ${fullName}!, you are registered successfully`, 
+            html: `<b>hello ${fullName}! your email: ${email} and password: ${pass} world?</b>`, 
+          });
+        
+          console.log("Message sent: %s", info.messageId);
+    } catch (error) {
+        console.log(error);
+        
+    }
+
+    return info
 }
+
 
 export { mailer } 
