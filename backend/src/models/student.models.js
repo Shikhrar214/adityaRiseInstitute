@@ -29,6 +29,14 @@ const studentSchema = new Schema (
             max: 30,
             index: true,
         },
+        email: {
+            type: String,
+            required: true,
+            lowercase: true,
+            trim: true,
+            unique: true,
+            max: 50
+        },
         dob: {
             type: Date,
             required: true,

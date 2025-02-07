@@ -1,5 +1,6 @@
 import { student } from "../models/student.models.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
+import { mailer } from "../utils/nodeMailer.js";
 import { UniqueIdGenerator } from "../utils/uniqueIdGenrator.js";
 
 // get all students
@@ -31,7 +32,7 @@ const getAllStudents = async (req,res) => {
 
 const createStudents = async (req, res) => {
     try {
-        const { fullName, fatherName, motherName, dob, gender, course, category, address, post, district, state, pincode, mobile, aadhar, password } = req.body;
+        const { fullName, fatherName, motherName, dob, email, gender, course, category, address, post, district, state, pincode, mobile, aadhar, password } = req.body;
 
         // Check if the student is already registered
         try {
@@ -99,6 +100,7 @@ const createStudents = async (req, res) => {
             fullName,
             fatherName,
             motherName,
+            email,
             dob,
             gender,
             course,
@@ -115,7 +117,21 @@ const createStudents = async (req, res) => {
             signature: signatureRes.url,
         });
 
-        await newStudent.save();
+        const registeredStudent = await newStudent.save();
+
+        const id = registeredStudent.ID
+        const pass = password.trim()
+        const name = registeredStudent.fullName
+        const registerdEmail = registeredStudent.email
+        const subject = "regarding to registration "
+
+        // mail generated id and password
+        const mailedData = await mailer(registerdEmail, subject, name, pass, id)
+        if (!mailedData) {
+            res.status(500).json({
+                message: "message not sent"
+            })
+        }
 
         // Respond with success
         res.status(200).json({

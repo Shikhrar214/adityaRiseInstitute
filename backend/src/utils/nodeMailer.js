@@ -19,23 +19,21 @@ const transporter = nodemailer.createTransport({
   });
 
 
-const mailer = async (email, subject, fullName, pass) => {
+const mailer = async (email, subject, fullName, pass, id) => {
     try {
         const info = await transporter.sendMail({
             from: process.env.EMAIL_USER, 
             to: email, 
-            subject: subject,
+            subject: subject || "",
             text: `hello ${fullName}!, you are registered successfully`, 
-            html: `<b>hello ${fullName}! your email: ${email} and password: ${pass} world?</b>`, 
+            html: `<b>hello ${fullName}! your email: ${email} and password: ${pass} world?</b> </br> <p> ${id?`your registerd id: ${id}`:""} </p>`, 
           });
-        
+          return info
           console.log("Message sent: %s", info.messageId);
     } catch (error) {
         console.log(error);
         
     }
-
-    return info
 }
 
 

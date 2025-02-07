@@ -120,13 +120,22 @@ const createSuperAdmin = async (req, res) => {
     const AdminName = createdUser.fullName
     const pass = password.trim()
     const sendMailAfterAdminCreation =  await mailer(to, subject, AdminName, pass ) 
-    console.log(sendMailAfterAdminCreation);
+    if (!sendMailAfterAdminCreation) {
+        res.status(500).json({
+            message: "message not sent"
+        })
+    }
+    
     
 
     // send success responce
         res.status(200).json({
             
-            superAdmin: newSuperAdmin.select("-password")
+            superAdmin: {
+                name: newSuperAdmin.fullName,
+                email: newSuperAdmin.email,
+                message: `${newSuperAdmin.fullName} created sucessfully!`
+            }
         })
     } catch (error) {
         res.status(500).json(
