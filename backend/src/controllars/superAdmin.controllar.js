@@ -7,22 +7,21 @@ import { mailer } from "../utils/nodeMailer.js";
 
 // genrate access and refresh token
 
-const genrateAccessAndRefreshToken = async (req, res, sAdminId) => {
+const genrateAccessAndRefreshToken = async (sAdminId) => {
     try {
         const admin = await superAdmin.findById(sAdminId);
+        
+        
         const accessToken = admin.genrateAccessToken()
         const refreshToken = admin.genrateRefreshToken()
 
         admin.refreshToken = refreshToken
         await admin.save({validateBeforeSave: false})
-
         return {accessToken, refreshToken}
 
 
     } catch (error) {
-        res.status(500).json({
-            message: "internal server error",
-        })
+        return error
     }
 }
 
@@ -83,14 +82,14 @@ const createSuperAdmin = async (req, res) => {
             })
         }
 
-        console.log("Local path of Admin: ",sAdminPhotoLocalPath);
+        
 
        
         // cloudinary upload
         const sAdminPhoto = await uploadOnCloudinary(sAdminPhotoLocalPath)
         
         // const photo = sAdminPhoto.url
-        console.log(sAdminPhoto);
+      
         
         
         const newSuperAdmin = new superAdmin({
@@ -110,11 +109,8 @@ const createSuperAdmin = async (req, res) => {
     //    create super admin
         const createdUser=  await newSuperAdmin.save();
         
-    //
+    
     // mailer
-    // get registerd user 
-    // de-construct user {email}
-    // to=email, subject, text
     const to = createdUser.email
     const subject = `Registration Successfull`
     const AdminName = createdUser.fullName
@@ -204,16 +200,85 @@ const deleteSuperAdmin = async (req, res) => {
 }
 
 
-const loginSuperAdmin = () => {
-    // login super admin
-    // get user from ---> req.body;
-    // find the super admin
-    // password check 
-    // access and refresh token
-    // send cookies
+
+
+// login super admin
+
+const loginSuperAdmin = async (req, res) => {
+   
+    try {
+        const {email, password} = req.body;
+        
+        if (!email && !password) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: "email and password required"
+                }
+            )
+        }
+        const admin = await superAdmin.findOne({email})
+        if (!admin) {
+            return res.status(400).json({
+                message: "person not found"
+            })
+        }
+        const correctPass = await admin.isPassCorrect(password)
+    
+        if (!correctPass) {
+            return res.status(401).json({
+                message: "Person not found "
+            })
+        }
+    
+        // token
+        const adminId = admin._id
+        
+        const {accessToken, refreshToken} = await genrateAccessAndRefreshToken(adminId)
+
+        if (!accessToken && !refreshToken) {
+            res.status(500).json({
+                message: "internal server error"
+            })
+        }
+       
+        const loggdinAdmin = await superAdmin.findById(adminId).select("-password -refreshToken")
+        
+        const options = {
+            httpOnly: true,
+            secure: true,
+    
+        } 
+        
+        
+        return res
+        .status(200)
+        .cookie("accessToken", accessToken, options)
+        .cookie("refreshToken", refreshToken, options)
+        .json(
+            {
+                success: true,
+                email: loggdinAdmin.email,
+                fullName: loggdinAdmin.fullName,
+                branch: loggdinAdmin.branchName,
+                accessToken,
+                refreshToken, 
+                message: "user loggedin successfully"
+            }
+        )
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: error || "internal server error", 
+            message: `error found= ${error}`
+        })
+    }
 }
 
-const logoutSuperAdmin = () => {}
+const logoutSuperAdmin = () => {
+    // check user
+    // clear all token and headers
+}
 
 
 

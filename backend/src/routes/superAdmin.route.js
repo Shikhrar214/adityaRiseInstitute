@@ -1,22 +1,22 @@
 import express from "express";
 import { Router } from "express";
-import { getAllSuperAdmin, createSuperAdmin, updateSuperAdmin, deleteSuperAdmin } from "../controllars/superAdmin.controllar.js";
+import { getAllSuperAdmin, createSuperAdmin, updateSuperAdmin, deleteSuperAdmin, loginSuperAdmin   } from "../controllars/superAdmin.controllar.js";
 import { upload } from "../middleware/multer.middelware.js";
-import { superAdminAuth } from "../middleware/superAdmin.auth.js";
+// import { superAdminAuth } from "../middleware/superAdmin.auth.js";
 
 
 
 const sAdminrouter = express.Router()
 
-sAdminrouter.get("/superadmin", superAdminAuth, getAllSuperAdmin);
+sAdminrouter.get("/superadmin", getAllSuperAdmin);
  
 sAdminrouter.post("/superadmin", upload.single('photo'), createSuperAdmin );
 
-sAdminrouter.put("/superadmin/:id",superAdminAuth, updateSuperAdmin);
+sAdminrouter.put("/superadmin/:id", updateSuperAdmin);
 
-sAdminrouter.delete("/superadmin/:id", superAdminAuth, deleteSuperAdmin);
+sAdminrouter.delete("/superadmin/:id", deleteSuperAdmin);
 
-// sAdminrouter.post("/superadmin/login", loginSuperAdmin);
+sAdminrouter.post("/login", loginSuperAdmin);
 
 
 
