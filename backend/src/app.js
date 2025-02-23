@@ -18,17 +18,18 @@ app.use(cookieParser())
 import { sAdminrouter } from './routes/superAdmin.route.js'
 import {studentRouter} from './routes/student.route.js'
 import { courseRouter } from './routes/course.route.js'
+import { ownerRouter } from './routes/owner.routes.js'
 
 
 // routes use
 app.use("/api", sAdminrouter)
 app.use("/api", studentRouter)
 app.use("/api", courseRouter)
+app.use("/api/owner", ownerRouter)
 
 
 
-
-// /api/superadmin -----> 
+// /api/ -----> 
 app.get("/",(req, res)=>{
     res.send("<h1>hello </br> you are WELCOME! </h1>")
 })

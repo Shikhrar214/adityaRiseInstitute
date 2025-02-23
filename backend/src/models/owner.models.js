@@ -2,7 +2,7 @@ import mongoose, {Schema} from 'mongoose'
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-const superAdminSchema = new Schema (
+const owner = new Schema (
     {
         fullName: {
             type: String,
@@ -19,19 +19,16 @@ const superAdminSchema = new Schema (
             unique: true,
             max: 50
         },
+
         role: {
             type: String,
-            default: "admin",
-            required: true
+            default: "owner"
         },
-        photo: {
-            type: String,  //cloudinery service
-            required: true
-        },
+
         mobileNumber: {
-            type: Number,
-            match: /^[0-9]{10}$/,
-            required: [true, "please enter correct mobile number"]
+            type: String,
+            match: [/^[0-9]{10}$/, "Please enter a valid 10-digit mobile number"],
+            required: [true, "Please enter a correct mobile number"]
         },
         fullAddress: {
             type: String,
@@ -53,25 +50,12 @@ const superAdminSchema = new Schema (
             index: true,
             max: 50
         },
-        aadhar: {
-            type: Number,
-            match: /^[0-9]{12}$/,
-            unique: true,
-            required: [true, "enter correct aadhar number"]
-        },
+        
         password: {
             type: String,
             required: true,
             min: 3,
             max: 30,
-        },
-        approved: {
-            type: Boolean,
-            default: false
-        },
-        blocked: {
-            type: Boolean,
-            default: false
         },
         refreshToken: {
             type: String
@@ -84,7 +68,7 @@ const superAdminSchema = new Schema (
 
 
 // password incryption
-superAdminSchema.pre("save",async function(next){
+owner.pre("save",async function(next){
     if (!this.isModified("password")) return next();
 
     this.password = await bcrypt.hash(this.password, 15);
@@ -93,19 +77,18 @@ superAdminSchema.pre("save",async function(next){
 
 
 // password validation
-superAdminSchema.methods.isPassCorrect = async function (password) {
+owner.methods.isPassCorrect = async function (password) {
     return await bcrypt.compare(password, this.password)
 }
 
 
 // genrate Access And Refresh Token
-superAdminSchema.methods.genrateAccessToken = function () {
+owner.methods.genrateAccessToken = function () {
     return jwt.sign(
         {
             _id: this._id,
             email: this.email,
-            fullName: this.fullName,
-            role: this.role,
+            fullName: this.fullName
         },
         process.env.JWT_ACCESS_TOKEN,
         {
@@ -115,7 +98,7 @@ superAdminSchema.methods.genrateAccessToken = function () {
 }
 
 
-superAdminSchema.methods.genrateRefreshToken = function (){
+owner.methods.genrateRefreshToken = function (){
     return jwt.sign(
         {
             _id: this._id,
@@ -126,4 +109,4 @@ superAdminSchema.methods.genrateRefreshToken = function (){
         }
     )
 }
-export const superAdmin = mongoose.model("superAdmin", superAdminSchema)
+export const Owner = mongoose.model("Owner", owner)

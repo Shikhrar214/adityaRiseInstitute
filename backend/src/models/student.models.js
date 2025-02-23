@@ -1,4 +1,6 @@
 import mongoose, {Schema} from "mongoose";
+import bcrypt from 'bcrypt'
+import jwt from "jsonwebtoken";
 
 
 const studentSchema = new Schema (
@@ -41,6 +43,11 @@ const studentSchema = new Schema (
             type: Date,
             required: true,
             index: true,
+        },
+        role: {
+            type: String,
+            default: "student",
+            required: true
         },
         gender: {
             type: String,
@@ -130,8 +137,45 @@ const studentSchema = new Schema (
     }
 )
 
+// pass incription
+studentSchema.pre("save", async function(next){
+    if (!this.isModified("password")) return next;
+    this.password = await bcrypt.hash(this.password, 15)
+    next()
+})
+
+// password validation
+studentSchema.methods.isPassCorrect = async function(password) {
+    return await bcrypt.compare(password, this.password)
+}
 
 
+// genrate Access token
+studentSchema.methods.genrateAccessToken = async function () {
+    return jwt.sign(
+        {
+            _id: this._id,
+            role: this.role,
+            email: this.email,
+            fullName: this.fullName,
+        },
+        process.env.JWT_ACCESS_TOKEN,
+        {
+            expiresIn: process.env.JWT_ACCESS_TOKEN_EXPIRY
+        }
+    )
+}
 
-
+// genrate refresh token
+studentSchema.methods.genrateRefreshToken = async function () {
+    return jwt.sign(
+        {
+            _id: this._id,
+        },
+        process.env.JWT_REFRESH_TOKEN,
+        {
+            expiresIn: process.env.JWT_REFRESH_TOKEN_EXPIRY
+        }
+    )
+}
 export const student = mongoose.model("student", studentSchema);

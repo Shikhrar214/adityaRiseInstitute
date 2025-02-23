@@ -2,32 +2,23 @@ import { student } from "../models/student.models.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { mailer } from "../utils/nodeMailer.js";
 import { UniqueIdGenerator } from "../utils/uniqueIdGenrator.js";
+import bcrypt from 'bcrypt'
 
-// get all students
 
-const getAllStudents = async (req,res) => {
-    try {
-        const allStudents = await student.find();
-        
-        if (!allStudents || allStudents.length === 0) {
-            res.status(200).json({
-                sucess: false,
-                message: "student not found"
-            })
-        }
+const generateAccessAndRefreshToken = async (studentId) => {
+   try {
+        const studentRes = await student.findById(studentId)
+    
+        const accessToken = await studentRes.genrateAccessToken()
+        const refreshToken = await studentRes.genrateRefreshToken()
+    
+        studentRes.refreshToken = refreshToken
+        await studentRes.save({validateBeforeSave: false})
+        return { accessToken, refreshToken }
 
-        // if student available 
-        res.status(200).json({
-            sucess: true,
-            students: allStudents
-        })
-    } catch (error) {
-        res.status(500).json({
-            sucess: false,
-            message: "internal server error",
-            error,
-        })
-    }
+   } catch (error) {
+        return error
+   }
 }
 
 const createStudents = async (req, res) => {
@@ -164,19 +155,24 @@ const updateStudents = (req,res) => {
     }
 }
 
-// delete student
-const deleteStudents = (req,res) => {
+
+const getStudent = async (req, res) => {
     try {
+        const id = req.student._id
+        console.log("getstudentid: ",id);
         
+        res.status(200).json({
+            success: true,
+            id,
+        })
     } catch (error) {
-        res.status(500).json({
-            sucess: false,
+        return res.status(500).json({
+            success: false,
             message: "internal server error",
-            error,
+            error: `${error}`
         })
     }
 }
-
 
 
 // login Students
@@ -185,31 +181,116 @@ const loginStudent = async (req, res) => {
 
     try {
         const { ID, password } = req.body;
-        if (!ID) {
+        if (!ID && !password) {
             res.status(201).json({
-                message: "ID was not Found",
+                message: "ID, password  not Found",
             })
         }
 
-        if (!password) {
-            res.status(201).json({
-                message: " Password was not Found"
+        console.log(ID, password);
+        
+        const foundedStudent = await student.findOne({ID})
+        if (!foundedStudent) {
+            return res.state(400).json({
+                message: "Bad request"
             })
         }
+        console.log(foundedStudent);
+        
+        const checkPassword = await bcrypt.compare(password, foundedStudent.password)
+        if (!checkPassword) {
+            return res.status(401).json({
+                message: "invalid credincials"
+            })
+        }
+        console.log("checkPassword: ",checkPassword);
 
+        const id = foundedStudent._id
 
-        res.status(200).json({
+        const {accessToken, refreshToken} = await generateAccessAndRefreshToken(id);
+        
+        if (!accessToken && !refreshToken ) {
+            return res.status(500).json({
+                message: "internal server error"
+            })
+        }
+        console.log(accessToken, refreshToken);
+
+        const options = {
+            httpOnly: true,
+            secure: true,
+        } 
+        
+
+        return res
+        .status(200)
+        .cookie("accessToken", accessToken, options)
+        .cookie("refreshToken", refreshToken, options)
+        .json({
             sucess: true,
-            message: "chal raha hai koi dikkat nahi hai"
+            email: foundedStudent.email,
+            name: foundedStudent.fullName,
+            accessToken,
+            refreshToken,
         })
+
     } catch (error) {
         res.status(500).json({
-            message: "internal server Error: check login student"
+            message: "internal server Error: check login student",
+            error: `${error}`,
         })
     }
 }
 // logout  students
 
-export {getAllStudents, createStudents, deleteStudents, updateStudents, loginStudent}
+const logoutStudent = async (req, res) => {
+    // id
+    // refreshtoken update 
+    // 
+    try {
+
+        const id = req.student._id
+        if (!id) return res(500).json({message: "internal server error"})
+        console.log("id = = = = ", id);
+        await student.findByIdAndUpdate(
+            id, 
+            {
+                $set: {
+                    refreshToken: undefined
+                }
+            },
+            {
+                new: true
+            }
+        )
+
+        const options = {
+            httpOnly: true,
+            secure: true,
+    
+        } 
+
+
+        return res
+        .status(200)
+        .clearCookie("accessToken", options)
+        .clearCookie("refreshToken", options)
+        .json({
+            success: true,
+            message: "user loggedout successfully"
+        })
+
+    } catch (error) {
+        error: `${error}`
+    }
+}
+
+export { 
+    createStudents, 
+    updateStudents,
+    getStudent, 
+    loginStudent,
+    logoutStudent,
+}
 
 

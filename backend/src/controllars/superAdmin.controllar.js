@@ -1,6 +1,7 @@
 import { superAdmin } from "../models/superAdmin.models.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { mailer } from "../utils/nodeMailer.js";
+import jwt from "jsonwebtoken";
 
 // BUSSINESS LOGIC
 
@@ -25,31 +26,45 @@ const genrateAccessAndRefreshToken = async (sAdminId) => {
     }
 }
 
-// get all Super admin
-const getAllSuperAdmin = async (req, res)=>{
+// get  admin
+const getAdmin = async (req, res) => {
     try {
-        const allSuperAdmin = await superAdmin.find();
-        if (!allSuperAdmin || allSuperAdmin.length === 0) {
-            res.json({
-                message: "superAdmin not found"
-            })
-        }
 
-        // if superAdmin found
-        res.status(200).json({
-            sucess: true,
-            superAdmin: allSuperAdmin
+        const token = req.cookies?.accessToken
+       
+        
+        if (!token) return res.status(400).json({
+            message: "please login"
         })
+        console.log("token =>: ", token);
+
+        const verifyToken = jwt.verify(token, process.env.JWT_ACCESS_TOKEN)
+
+        if (!verifyToken) return res.status(400).json({message: "user not loggedin"})
+            
+        const id = verifyToken._id
+
+        const admin = await superAdmin.findById(id).select("-password -refreshToken")
+
+        if(!admin) return res(400).json({message: "user not authenticated"})
+        console.log(admin);
+        
+        res.status(200).json({
+            message: "success",
+            admin,
+        })
+        
     } catch (error) {
-        res.status(200).json(
+        res.status(500).json(
             {
                 sucess: false,
-                message: "not found any product"
+                message: "internal server error",
+                error: error,
+                
             }
         )
     }
 }
-
 
 // create Super Admin
 const createSuperAdmin = async (req, res) => {
@@ -156,7 +171,7 @@ const updateSuperAdmin = async (req, res) => {
         const updateSuperAdmin = await superAdmin.findByIdAndUpdate(id, {password}, {new: true});
 
         if (!updateSuperAdmin) {
-            res.status(200).json({
+            return res.status(200).json({
                 sucess: false,
                 message: "cannot find the admin"
             })
@@ -174,33 +189,6 @@ const updateSuperAdmin = async (req, res) => {
         })
     }
 }
-
-
-// delete super Admin
-const deleteSuperAdmin = async (req, res) => {
-    try {
-        const {id} = req.params;
-
-        const deleteSuperAdmin = await superAdmin.findByIdAndDelete(id)
-        if (!deleteSuperAdmin) {
-            res.json({
-                message: "superAdmin not found"
-            })
-        }
-
-        res.status(200).json({
-            message: "super admin deleted sucessfully"
-        })
-    } catch (error) {
-        res.status(500).json({
-            status: false,
-            message: error
-        })
-    }
-}
-
-
-
 
 // login super admin
 
@@ -275,9 +263,51 @@ const loginSuperAdmin = async (req, res) => {
     }
 }
 
-const logoutSuperAdmin = () => {
-    // check user
-    // clear all token and headers
+// logout admin
+
+const logoutAdmin = async (req, res) => {
+    try {
+        // get id from req.cookie
+        // set cookie = null
+        const id = req.admin._id
+        
+        
+        if(!id) return res.status(400).json({
+            message: "unauthorize request"
+        })
+        console.log(id);
+        await superAdmin.findByIdAndUpdate(id, 
+            {
+                $set: {
+                    refreshToken: undefined,
+                }
+            },
+
+            {
+                new: true
+            },
+        )
+
+        const options = {
+            httpOnly: true,
+            secure: true,
+    
+        } 
+
+        res.status(200)
+        .clearCookie("accessToken", options)
+        .clearCookie("refreshToken", options)
+        .json({
+            message: "user logged out"
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: error || "internal server error", 
+            message: `error found = ${error}`
+        })
+    }
+    
 }
 
 
@@ -285,12 +315,11 @@ const logoutSuperAdmin = () => {
 
 
 export {
-    getAllSuperAdmin, 
+    getAdmin, 
     createSuperAdmin, 
     updateSuperAdmin, 
-    deleteSuperAdmin,
     loginSuperAdmin,
-    logoutSuperAdmin,
+    logoutAdmin,
 
 }
 
