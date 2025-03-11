@@ -1,3 +1,4 @@
+import { Otp } from '../models/otp.model.js';
 import { Owner } from '../models/owner.models.js'
 import { student } from '../models/student.models.js';
 import { superAdmin } from '../models/superAdmin.models.js';
@@ -160,7 +161,7 @@ const verifyAdmin = async (req, res) => {
     try {
         const {id} = req.params;
         if (!id) return res.status(400).json({message: "unauthorised request"})
-        const verifiedAdmin = await superAdmin.findByIdAndUpdate(id, {approved: true}, {new: true} )
+        const verifiedAdmin = await superAdmin.findByIdAndUpdate(id, {approved: true}, {new: true} ).select("-password -refreshToken")
         if(!verifiedAdmin) return res.status(400).json({message: "unauthorised request || admin is not available"})
         
             return res.status(200).json({
@@ -246,6 +247,36 @@ const logOut = async (req, res) => {
     }
 }
 
+const resetPassword = async(req, res) => {
+    try {
+        const {email, newPassword, otp} = req.body;
+        if (!email && !newPassword &&! otp) {
+            return res.status(400).json("all feilds are required ")
+        }
+        const responceOwner = await Otp.findOne({otp})
+        if (!responceOwner) {
+            return res.status(400).json("some error occurred please try again")
+        }
+        const owner = await Owner.findOne({email});
+        if (!owner) {
+            return res.status(400).json("unauthorised request")
+        }
+
+        res.status(200).json({
+            responceOwner,
+            email,
+            newPassword,
+            otp
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: "internal server error",
+            error: `${error}`,
+        })
+    }
+}
+
+
 
 export {
     registerOwner,
@@ -257,4 +288,5 @@ export {
     verifyAdmin,
     login,
     logOut,
+    resetPassword,
 }

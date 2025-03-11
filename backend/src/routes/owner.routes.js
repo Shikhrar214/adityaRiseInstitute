@@ -1,5 +1,5 @@
 import express from 'express'
-import { blockAdmin, getAllAdmins, getAllOwners, getAllStudents, login, logOut, registerOwner, unBlockAdmin, verifyAdmin } from '../controllars/owner.controller.js'
+import { blockAdmin, getAllAdmins, getAllOwners, getAllStudents, login, logOut, registerOwner, resetPassword, unBlockAdmin, verifyAdmin } from '../controllars/owner.controller.js'
 import { verifyJWTOwner } from '../middleware/auth.middleware.js'
 
 
@@ -25,7 +25,7 @@ ownerRouter.post("/login", login)
 
 ownerRouter.post("/logout",verifyJWTOwner, logOut)
 
-
+ownerRouter.post("/reset-password", resetPassword)
 
 
 export {ownerRouter}

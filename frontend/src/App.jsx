@@ -1,5 +1,8 @@
 import { About, AdminRegister, AdminDashboard, Contect, Courses, Gallary, Home, Layout, Register, StudentRegistration, AllAdmin, AllStudents, AdminHome, AddCourse, Login, AdminLogin, StudentLogin } from './index'
 import { createBrowserRouter, RouterProvider } from "react-router";
+import OwnerDashboard from './owner/ownerDashboard';
+import Admins from './owner/admins';
+import Students from './owner/students';
 
 function App() {
   const router = createBrowserRouter([
@@ -76,6 +79,20 @@ function App() {
               element: <StudentLogin />
             }
           ]
+        }
+      ]
+    },
+    {
+      path: "ownerdashboard",
+      element: <OwnerDashboard />,
+      children: [
+        {
+          path: "admins",
+          element: <Admins />
+        },
+        {
+          path: "students",
+          element: <Students />
         }
       ]
     }

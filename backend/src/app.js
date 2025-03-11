@@ -19,13 +19,15 @@ import { sAdminrouter } from './routes/superAdmin.route.js'
 import {studentRouter} from './routes/student.route.js'
 import { courseRouter } from './routes/course.route.js'
 import { ownerRouter } from './routes/owner.routes.js'
+import { otpRouter } from './routes/otp.route.js'
 
 
 // routes use
-app.use("/api", sAdminrouter)
-app.use("/api", studentRouter)
-app.use("/api", courseRouter)
-app.use("/api/owner", ownerRouter)
+app.use("/api/v1/admins", sAdminrouter)
+app.use("/api/v1/students", studentRouter)
+app.use("/api/v1/courses", courseRouter)
+app.use("/api/v1/owner", ownerRouter)
+app.use("/api/v1", otpRouter)
 
 
 

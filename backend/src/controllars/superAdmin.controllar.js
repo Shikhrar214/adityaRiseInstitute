@@ -2,6 +2,8 @@ import { superAdmin } from "../models/superAdmin.models.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { mailer } from "../utils/nodeMailer.js";
 import jwt from "jsonwebtoken";
+import { sendOTP } from "./otpSend.controller.js";
+import { Otp } from "../models/otp.model.js";
 
 // BUSSINESS LOGIC
 
@@ -310,6 +312,83 @@ const logoutAdmin = async (req, res) => {
     
 }
 
+const resetPassword = async (req, res) => {
+    // get email, otp, password
+    // find 
+    try {
+        const {email, newPassword, otp} = req.body;
+        if (!email && !otp) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: "email and otp required"
+                }
+            )
+            
+        }
+
+        const savedOtp = await Otp.findOne({email});
+        if (!savedOtp) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: "otp not found"
+                }
+            )
+            
+        }
+
+        if (savedOtp.otp !== otp) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: "otp not matched"
+                }
+            )
+            
+        }
+
+        if (!newPassword) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: "password required"
+                }
+            )
+            
+        }
+
+        const admin = await superAdmin.findOne({email});
+        if (!admin) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: "admin not found"
+                }
+            )
+            
+        }
+
+        admin.password = newPassword;
+        await admin.save();
+        return res.status(200).json(
+            {
+                success: true,
+                message: "password reset successfully"
+            }
+        )
+
+        
+
+        
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: error || "internal server error", 
+            message: `error found = ${error}`
+        })
+    }
+}
 
 
 
@@ -320,6 +399,6 @@ export {
     updateSuperAdmin, 
     loginSuperAdmin,
     logoutAdmin,
-
+    resetPassword,
 }
 
