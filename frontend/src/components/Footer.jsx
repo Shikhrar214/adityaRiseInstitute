@@ -35,6 +35,12 @@ function Footer() {
                                         About
                                     </Link>
                                 </li>
+                                
+                                <li>
+                                    <Link to="/ownerLogin" className="hover:underline">
+                                        Owner
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
                         <div>
@@ -42,7 +48,7 @@ function Footer() {
                             <ul className="text-gray-500 font-medium">
                                 <li className="mb-4">
                                     <a
-                                        href="/"
+                                        href="https://github.com/Shikhrar214"
                                         className="hover:underline"
                                         target="_blank"
                                         rel="noreferrer"

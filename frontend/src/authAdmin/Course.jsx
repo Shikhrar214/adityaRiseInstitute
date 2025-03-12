@@ -17,7 +17,7 @@ function Course() {
     const handelSubmit =  async (e) => {
         e.preventDefault()
         try {
-            const res = await axios.post("/api/course", courseData);
+            const res = await axios.post("/api/v1/courses/course", courseData);
             console.log(res);
             
         } catch (error) {

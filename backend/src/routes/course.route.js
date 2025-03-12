@@ -5,7 +5,7 @@ import { verifyJWTAdmin } from "../middleware/auth.middleware.js";
 
 const courseRouter = express.Router()
 
-courseRouter.get("/courses",verifyJWTAdmin, getAllCourses)
+courseRouter.get("/courses", getAllCourses)
 
 courseRouter.post("/course",verifyJWTAdmin, createCourse)
 

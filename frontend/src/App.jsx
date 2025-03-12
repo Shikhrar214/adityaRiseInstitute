@@ -1,8 +1,10 @@
-import { About, AdminRegister, AdminDashboard, Contect, Courses, Gallary, Home, Layout, Register, StudentRegistration, AllAdmin, AllStudents, AdminHome, AddCourse, Login, AdminLogin, StudentLogin } from './index'
+import { About, AdminRegister, AdminDashboard, Contect, Courses, Gallary, Home, Layout, Register, StudentRegistration, AllAdmin, AllStudents, AdminHome, AddCourse, Login, AdminLogin, StudentLogin, OwnerLoginPage } from './index'
 import { createBrowserRouter, RouterProvider } from "react-router";
 import OwnerDashboard from './owner/ownerDashboard';
 import Admins from './owner/admins';
 import Students from './owner/students';
+import Dashboard from './authAdmin/Dashboard';
+import Course from './authAdmin/Course';
 
 function App() {
   const router = createBrowserRouter([
@@ -43,6 +45,10 @@ function App() {
               element: <StudentRegistration />
             }
           ]
+        },
+        {
+          path: "ownerLogin",
+          element: <OwnerLoginPage />
         },
         {
           path: "adminDashboard",
@@ -93,7 +99,15 @@ function App() {
         {
           path: "students",
           element: <Students />
-        }
+        },
+        {
+          path: "course",
+          element: <Courses />
+        },
+        {
+          path: "addRemoveCourse",
+          element: <Course />
+        },
       ]
     }
   ])

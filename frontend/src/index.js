@@ -40,3 +40,4 @@ export { default as Error } from './error/Error.jsx';
 export { default as ownerDashboard } from './owner/ownerDashboard.jsx'
 export { default as admins } from './owner/admins.jsx'
 export { default as students } from './owner/students.jsx'
+export { default as OwnerLoginPage } from './owner/ownerLoginPage.jsx'

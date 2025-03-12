@@ -34,7 +34,7 @@ function Courses() {
 // fetch data
 
     const responce = async () => {
-        await axios.get("/api/courses")
+        await axios.get("/api/v1/courses/courses")
         .then((res) => {
             setData(res.data.courses)
             setrTotalCourse(res.data.courses.length)
