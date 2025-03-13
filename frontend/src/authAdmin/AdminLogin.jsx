@@ -1,10 +1,12 @@
+import axios from 'axios';
 import React, { useState } from 'react'
-
+import { useNavigate } from 'react-router';
 
 function AdminLogin() {
+  const navigate = useNavigate()
   const [formData, setFormData] =useState(
     {
-        ID: "",
+        email: "",
         password: ''
     }
 )
@@ -17,9 +19,17 @@ const handleChange = (e) => {
 }
 
 
-const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
-
+        await axios.post("/api/v1/admins/login",formData, {withCredentials: true})
+        .then((responce)=>alert("loggedin Successfull"))
+        .then(()=>navigate("/adminDashboard"))
+        .catch((error)=>{
+          alert("some error occerd")
+          navigate("/")
+          console.log(error);
+          
+        })
   try {
       
   } catch (error) {
@@ -27,7 +37,6 @@ const handleSubmit = (e) => {
       
   }
   console.log('Form Data Submitted:', formData);
-  alert('Form submitted successfully!');
 }
 
 
@@ -43,12 +52,12 @@ const handleSubmit = (e) => {
                               <form onSubmit={handleSubmit} className='text-orange-600'>
           
                                   <div>
-                                      <label htmlFor="" className="block text-white mb-1">ID </label>
+                                      <label htmlFor="" className="block text-white mb-1">email </label>
                                       <input 
                                       className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                                       type="email" 
-                                      name="ID"
-                                      value={formData.ID}
+                                      name="email"
+                                      value={formData.email}
                                       onChange={handleChange}
                                       required
                                   

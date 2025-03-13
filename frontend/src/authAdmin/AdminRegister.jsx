@@ -37,7 +37,7 @@ function AdminRegister() {
             e.preventDefault();
             
             try {
-                const response = await axios.post("/api/superadmin", formData, {
+                const response = await axios.post("/api/v1/admins/superadmin", formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                       },

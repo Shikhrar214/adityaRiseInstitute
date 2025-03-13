@@ -59,7 +59,7 @@ const getAllOwners = async (req, res) => {
             })
         }
 
-        console.log(allOwners);
+        
         
 
         res.status(200).json({
@@ -195,7 +195,7 @@ const login = async (req, res) => {
         const owner = await Owner.findOne({email})
         if (!owner) return res.status(400).json({message: "not authorised user"})
      
-            console.log(owner);
+        
             
         const matchPass = await bcrypt.compare(password, owner.password)
        
@@ -203,7 +203,7 @@ const login = async (req, res) => {
         if(!matchPass) return res.status(400).json({message: "incorrect password"})
        
         const id = owner._id 
-        console.log("qwner = ", id);
+
         
         const {accessToken, refreshToken} = await genrateAccessAndRefreshToken(id)
         return res
@@ -226,7 +226,7 @@ const logOut = async (req, res) => {
     try {
         const id = req.owner._id
 
-        console.log("id", id);
+      
         if (!id) return res.status(400).json({message: "invalid request"})
         const owner = Owner.findByIdAndUpdate(id, {refreshToken: undefined}, {new: true})
         

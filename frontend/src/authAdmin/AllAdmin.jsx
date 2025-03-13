@@ -1,92 +1,71 @@
-import React, { useEffect, useState } from 'react'
-import moment from 'moment'
-import axios from 'axios'
+import React, { useEffect, useState } from 'react';
+import moment from 'moment';
+import axios from 'axios';
 
 function AllAdmin() {
-    const [data, setData] =useState([])
-
-    useEffect( ()=>{
-        axios.get('/api/superadmin')
-        .then((res)=>{
-            console.log(res.data.superAdmin);
-            setData(res.data.superAdmin)
-            console.log("all admins are ? : ",res.data);
-            
-        })  
-    },[])
+    const [data, setData] = useState(null);
+    const admin = data
+    useEffect(() => {
+        axios.get('/api/v1/admins/superadmin')
+            .then((res) => {
+                setData(res.data.admin);
+                console.log("All admins:", res.data.admin);
+            })
+            .catch((error) => console.error("Error fetching admins:", error));
+    }, []);
 
     return (
-        <>
-            <div>
-                <h1>
-                    all Admin list
-                </h1>
+        <div className="p-4 max-w-screen-2xl mx-auto">
+            <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">All Admins</h1>
 
-                <div>
-                    {
-                        data.map((data, index)=>(
-                            <div 
-                            className='bg-slate-500 p-8 m-4 rounded-2xl flex'
-                            key={data._id}>
-                                
-
-
-                                <div>
-                                    <div className='bg-white h-60 w-60 rounded-2xl mx-4'>
-                                    {/* {data.photo} */}
-                                    <img 
-                                    className='w-full h-full'
-                                    src={data.photo} alt="" />
-                                    </div>
-                                </div>
-
-
-                                <div className='w-full text-white  '>
-                                    <h1 className='text-center text-xl bg-slate-950'>{data.fullName}</h1>
-                                    <div >
-                                        
-                                        <table cellPadding={20} className='w-full h-full'>
-                                            <tr>
-                                                <td className='text-2xl font-bold'>Email: </td>
-                                                <td className='text-2xl font-semibold'>{data.email}</td>
-                                                
-                                                <td className='text-2xl font-bold'>Phone:</td>
-                                                <td className='text-2xl font-semibold'>{data.mobileNumber}</td>
-                                            </tr>
-                                            <tr>
-                                                <td className='text-2xl font-bold'>Aadhar: </td>
-                                                <td className='text-2xl font-semibold'>{data.aadhar}</td>
-                                                
-                                                <td className='text-2xl font-bold'>Created: </td>
-                                                <td className='text-2xl font-semibold'>{moment(data.createdAt).format("DD-MM-YYYY")}</td>
-                                            </tr>
-                                            <tr>
-                                                <td className='text-2xl font-bold'>Last Updated: </td>
-                                                <td className='text-2xl font-semibold'>{moment(data.updatedAt).format("DD-MM-YYYY")}</td>
-                                                
-                                                <td className='text-2xl font-bold'>Branch: </td>
-                                                <td className='text-2xl font-semibold'>{data.branchName}</td>
-                                            </tr>
-                                            <tr>
-                                                <td className='text-2xl font-bold'>Branch Location: </td>
-                                                <td className='text-2xl font-semibold'>{data.branchLocation}</td>
-                                                
-                                                <td className='text-2xl font-bold'>Full Address: </td>
-                                                <td className='text-2xl font-semibold'>{data.fullAddress}</td>
-                                            </tr>
-                                            
-                                        </table>
-
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        ))
-                    }
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {data?
+                    <div key={data._id} className="bg-slate-500 p-6 rounded-2xl shadow-lg flex flex-col items-center">
+                        <div className="bg-white h-40 w-40 rounded-full overflow-hidden">
+                            <img className="w-full h-full object-cover" src={admin.photo} alt={admin.fullName} />
+                        </div>
+                        <h2 className="text-white text-lg font-semibold bg-slate-950 w-full text-center py-2 mt-4">{admin.fullName}</h2>
+                        <table className="w-full text-white text-sm mt-4">
+                            <tbody>
+                                <tr>
+                                    <td className="font-bold">Email:</td>
+                                    <td>{admin.email}</td>
+                                </tr>
+                                <tr>
+                                    <td className="font-bold">Phone:</td>
+                                    <td>{admin.mobileNumber}</td>
+                                </tr>
+                                <tr>
+                                    <td className="font-bold">Aadhar:</td>
+                                    <td>{admin.aadhar}</td>
+                                </tr>
+                                <tr>
+                                    <td className="font-bold">Created:</td>
+                                    <td>{moment(admin.createdAt).format("DD-MM-YYYY")}</td>
+                                </tr>
+                                <tr>
+                                    <td className="font-bold">Last Updated:</td>
+                                    <td>{moment(admin.updatedAt).format("DD-MM-YYYY")}</td>
+                                </tr>
+                                <tr>
+                                    <td className="font-bold">Branch:</td>
+                                    <td>{admin.branchName}</td>
+                                </tr>
+                                <tr>
+                                    <td className="font-bold">Branch Location:</td>
+                                    <td>{admin.branchLocation}</td>
+                                </tr>
+                                <tr>
+                                    <td className="font-bold">Full Address:</td>
+                                    <td>{admin.fullAddress}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                :""}
             </div>
-        </>
-    )
+        </div>
+    );
 }
 
-export default AllAdmin
+export default AllAdmin;

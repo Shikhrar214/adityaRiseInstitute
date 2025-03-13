@@ -18,13 +18,7 @@ function OwnerDashboard() {
             navigate("/")
           })
         } catch (error) {
-          return(
-            <>
-              <h1>
-                some error occurred!
-              </h1>
-            </>
-          )
+          navigate("/")
         }
     } 
 

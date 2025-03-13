@@ -38,7 +38,7 @@ const getAdmin = async (req, res) => {
         if (!token) return res.status(400).json({
             message: "please login"
         })
-        console.log("token =>: ", token);
+        
 
         const verifyToken = jwt.verify(token, process.env.JWT_ACCESS_TOKEN)
 
@@ -49,7 +49,7 @@ const getAdmin = async (req, res) => {
         const admin = await superAdmin.findById(id).select("-password -refreshToken")
 
         if(!admin) return res(400).json({message: "user not authenticated"})
-        console.log(admin);
+      
         
         res.status(200).json({
             message: "success",
@@ -277,7 +277,7 @@ const logoutAdmin = async (req, res) => {
         if(!id) return res.status(400).json({
             message: "unauthorize request"
         })
-        console.log(id);
+
         await superAdmin.findByIdAndUpdate(id, 
             {
                 $set: {

@@ -20,24 +20,23 @@ export const verifyJWTAdmin = async (req, res, next) => {
                 message: "internal server error"
             })
         }
-        console.log(decoadedToken);
-        console.log(decoadedToken._id);
+       
         
         const admin = await superAdmin.findById({_id: decoadedToken?._id}).select("-password -refreshToken")
 
         if (!admin) {
             return res.status(400).json({message: "invalid user credencials"})
         }
-        console.log("admin=",admin);
+        
 
         // role 
         const roleAuth = decoadedToken.role === admin.role
         if (!roleAuth)  return res.status(400).json({
             message: "not authenticated user"
         })
-        console.log("roleauth=", roleAuth);
+       
         req.admin = admin;
-        console.log("req.user = ", req.admin);
+        
         
         next()
     } catch (error) {
@@ -92,10 +91,10 @@ export const verifyJWTStudent = async (req, res, next) => {
             })
         }
         const id = decoadedToken._id
-        console.log("testing", id);
+        
         
         const studentRes = await student.findById({_id: id}).select("-password -refreshToken")
-        console.log("testing: ", studentRes);
+        
         
         if (!studentRes) {
             return res.status(400).json({message: "invalid user credencials"})
@@ -107,7 +106,7 @@ export const verifyJWTStudent = async (req, res, next) => {
         })
 
         req.student = studentRes
-        console.log("req.student", req.student);
+   
         
         next()
     } catch (error) {

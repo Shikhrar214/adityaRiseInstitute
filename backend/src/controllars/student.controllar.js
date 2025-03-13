@@ -57,7 +57,7 @@ const createStudents = async (req, res) => {
 
             const currentMaxId = existedId[0]?.greatestId || 0; // Default to 0 if no students exist
             generatedId = UniqueIdGenerator(currentMaxId);
-            console.log("Generated ID:", generatedId);
+            
         } catch (error) {
             console.error("Error generating ID:", error);
             return res.status(500).json({
@@ -159,11 +159,12 @@ const updateStudents = (req,res) => {
 const getStudent = async (req, res) => {
     try {
         const id = req.student._id
-        console.log("getstudentid: ",id);
+       
         
         res.status(200).json({
             success: true,
             id,
+            student: req.student
         })
     } catch (error) {
         return res.status(500).json({
@@ -187,15 +188,15 @@ const loginStudent = async (req, res) => {
             })
         }
 
-        console.log(ID, password);
+     
         
         const foundedStudent = await student.findOne({ID})
         if (!foundedStudent) {
-            return res.state(400).json({
+            return res.status(400).json({
                 message: "Bad request"
             })
         }
-        console.log(foundedStudent);
+
         
         const checkPassword = await bcrypt.compare(password, foundedStudent.password)
         if (!checkPassword) {
@@ -203,7 +204,7 @@ const loginStudent = async (req, res) => {
                 message: "invalid credincials"
             })
         }
-        console.log("checkPassword: ",checkPassword);
+       
 
         const id = foundedStudent._id
 
@@ -214,7 +215,7 @@ const loginStudent = async (req, res) => {
                 message: "internal server error"
             })
         }
-        console.log(accessToken, refreshToken);
+
 
         const options = {
             httpOnly: true,
@@ -251,7 +252,7 @@ const logoutStudent = async (req, res) => {
 
         const id = req.student._id
         if (!id) return res(500).json({message: "internal server error"})
-        console.log("id = = = = ", id);
+     
         await student.findByIdAndUpdate(
             id, 
             {

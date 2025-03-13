@@ -58,6 +58,18 @@ function Dashboard() {
                     Add Course
                   </NavLink>
                 </li>
+                <li className="py-6">
+                  <NavLink
+                    to="course"
+                    className={({ isActive }) =>
+                      `block py-2 pr-4 pl-3 duration-200 border-b ${
+                        isActive ? "text-orange-700" : "text-gray-700"
+                      } hover:bg-gray-50 hover:text-orange-700`
+                    }
+                  >
+                    🤵🏻👉🏻
+                  </NavLink>
+                </li>
               </ul>
             </div>
           </aside>

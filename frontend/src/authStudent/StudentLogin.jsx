@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react'
 import { Navigate, useNavigate } from "react-router";
 
@@ -6,7 +7,7 @@ function StudentLogin() {
     
     const [formData, setFormData] =useState(
         {
-            registrationNo: "",
+            ID: "",
             password: ''
         }
     )
@@ -18,17 +19,21 @@ function StudentLogin() {
         setFormData ({...formData, [name]: value})
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            
+            await axios.post("/api/v1/students/studentlogin", formData , {
+                withCredentials: true
+            })
+            console.log('Form Data Submitted:', formData);
+            alert('Form submitted successfully!');
+            navigate("/student")
         } catch (error) {
             console.log("err ===>", error);
             
         }
-        console.log('Form Data Submitted:', formData);
-        alert('Form submitted successfully!');
+        
     }
 
 
@@ -49,8 +54,8 @@ function StudentLogin() {
                             <input 
                             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                             type="text" 
-                            name="registrationNo"
-                            value={formData.registrationNo}
+                            name="ID"
+                            value={formData.ID}
                             onChange={handleChange}
                             required
                         

@@ -16,5 +16,5 @@ export const generateOTP = async () => {
     }
   };
   
-  console.log(generateOTP()); 
+//   console.log(generateOTP()); 
   
