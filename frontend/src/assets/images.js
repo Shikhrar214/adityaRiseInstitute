@@ -29,10 +29,10 @@ export {default as SundramKashyapCCC} from './reviewImages/SundramKashyapCCC.jpe
 
 
 // faculity images
-export{default as AbhayPandey} from './faculityImages/AbhayPandey.jpeg'
+export{default as AbhayPandey} from './faculityImages/AbhayPandey.png'
 export{default as AvneeshPandey} from './faculityImages/AvneeshPandey.jpeg'
 export{default as GarimaPandey} from './faculityImages/GarimaPandey.jpeg'
-export{default as PriyankJaiswal} from './faculityImages/PriyankJaiswal.jpeg'
-export{default as RavinderVerma} from './faculityImages/RavinderVerma.jpeg'
-export{default as SatyamSrivastav} from './faculityImages/SatyamSrivastav.jpeg'
-export{default as VinodKumar} from './faculityImages/VinodKumar.jpeg'
+export{default as PriyankJaiswal} from './faculityImages/PriyankJaiswal.png'
+export{default as RavinderVerma} from './faculityImages/RavinderVerma.png'
+export{default as SatyamSrivastav} from './faculityImages/SatyamSrivastav.png'
+export{default as VinodKumar} from './faculityImages/VinodKumar.png'

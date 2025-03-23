@@ -39,6 +39,9 @@ function StudentLogin() {
 
     const adminLoginPageNavigation = () => navigate("adminlogin")
 
+
+    const resetPass = () => navigate("/student-reset-pass")
+
     return (
         <>
             <div className='my-32 flex items-center'>
@@ -81,6 +84,13 @@ function StudentLogin() {
                         type='submit'>
                             Login
                         </button>
+
+                       <div>
+                         <span>Forgot Password? <span className='font-bold hover:text-rose-900 hover:cursor-pointer'
+                       onClick={resetPass}
+                       >Click</span></span>
+
+                       </div>
                        
                        <span>Admin? <span className='font-bold hover:text-rose-900 hover:cursor-pointer'
                        onClick={adminLoginPageNavigation}

@@ -16,8 +16,9 @@ function Home() {
                 <div className='mx-auto'>
                     <aside className='mx-auto text-center content-center justify-center'>
                             <div className='my-5'>
-                            <h1 className='text-7xl font-extrabold'>Aditya Rise Institute </h1>
-                            <p className='text-3xl font-bold'><span className='text-orange-500'>Aditya Rise Computer</span> Institute established in 1912 by  <span className='text-orange-500'>Mr. Aditya Pandey</span></p>
+                            <h1 className='text-7xl font-extrabold'>Aditya Rise Computer Institute </h1>
+                            <p className='text-3xl font-bold'><span className='text-orange-500'>Aditya Rise Computer Institute</span>  established in 2018 by  <span className='text-orange-500'>Mr. Aditya Pandey</span></p>
+                            <p ><span className='font-extrabold text-gray-900'>BABHNAN BASTI (UP) </span></p>
                             <p>1000+ students are happy to join our organization</p>
                             </div>
                             <div>
@@ -45,7 +46,7 @@ function Home() {
 
                     <br />
 
-                    Established in 1999 by the visionary educator Aditya Nath Pandey, Aditya Rise Institute has been a cornerstone of quality education in the local community for over two decades. Known for its dedication to nurturing young minds, the institute enjoys a strong reputation among students and parents alike.
+                    Established in 2018 by the visionary educator Aditya Pandey, Aditya Rise Computer Institute has been a cornerstone of quality education in the local community for long time. Known for its dedication to nurturing young minds, the institute enjoys a strong reputation among students and parents alike.
 
                     Aditya Rise Institute’s success lies in its team of committed and knowledgeable faculty members. The teaching staff includes Garima Pandey, Abhay Pandey, Vinod Kumar, Priyank Jaiswal, Ravindra Verma, and Satyam Srivastav—all of whom bring years of expertise and passion for teaching. Their collective effort ensures personalized attention and tailored learning experiences for each student.
 

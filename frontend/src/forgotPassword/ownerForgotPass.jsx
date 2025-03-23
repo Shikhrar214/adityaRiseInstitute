@@ -5,6 +5,7 @@ function OwnerForgotPass() {
   const [otp, setOtp] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,6 +25,21 @@ function OwnerForgotPass() {
           </h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
+             {/* email input */}
+             <div>
+              <label className="block text-gray-600 font-medium mb-1">
+                Email
+              </label>
+              <input 
+              type="text" 
+              value={email}
+              onChange={(e)=>setEmail(e.target.value)}
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+              required
+             />
+            </div>
+            <button className="px-4 py-2 border rounded-md focus:outline-none w-full bg-orange-600 text-white hover:bg-orange-700transition">verify E-mail</button>
+
             {/* OTP Input */}
             <div>
               <label className="block text-gray-600 font-medium mb-1">

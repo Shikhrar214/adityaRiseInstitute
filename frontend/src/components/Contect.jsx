@@ -66,8 +66,8 @@ const Contect = () => {
       <div className="py-4">
         <span className="font-medium">Phone: </span>
         <span>
-          <a href="tel:1010101010" className="text-orange-600 underline">
-            1010101010
+          <a href="tel:8467957047" className="text-orange-600 underline">
+            8467957047
           </a>
         </span>
       </div>
@@ -75,7 +75,7 @@ const Contect = () => {
         <span className="font-medium">Email: </span>
         <span>
           <a
-            href="mailto:shikharsrivastav9450@gmail.com"
+            href="mailto:1432arci@gmail.com"
             className="text-orange-600 underline"
           >
             Mail your Query

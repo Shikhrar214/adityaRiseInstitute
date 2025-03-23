@@ -9,6 +9,7 @@ const StudentRegistration = () => {
     fullName: "",
     fatherName: "",
     motherName: "",
+    email: "",
     dob: "",
     gender: "",
     course: "CCC",
@@ -57,7 +58,7 @@ const StudentRegistration = () => {
    
     
     try {
-      const responce = await axios.post("/api/student", formData, {
+      const responce = await axios.post("/api/v1/students/student", formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -106,6 +107,17 @@ const StudentRegistration = () => {
                 name="motherName"
                 className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                 value={formData.motherName}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div>
+              <label className="block mb-2">E-mail</label>
+              <input
+                type="email"
+                name="email"
+                className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                value={formData.email}
                 onChange={handleChange}
                 required
               />

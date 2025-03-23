@@ -29,7 +29,8 @@ import {
   Admins,
   Students,
   StudentHome,
-  AllCourses
+  AllCourses,
+  PostStudentData
 } from './index'
 import { createBrowserRouter, RouterProvider } from "react-router";
 // import OwnerDashboard from './owner/ownerDashboard';
@@ -87,10 +88,10 @@ function App() {
           path: "adminDashboard",
           element: <AdminDashboard />,
           children: [
-            {
-              path: "",
-              element: <AdminHome />
-            },
+            // {
+            //   path: "",
+            //   element: <AdminHome />
+            // },
             {
               path: "alladmin",
               element: <AllAdmin />
@@ -102,6 +103,10 @@ function App() {
             {
               path: "course",
               element: <AddCourse />
+            },
+            {
+              path: "post-student-data",
+              element: <PostStudentData />
             }
           ],
         },

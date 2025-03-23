@@ -36,7 +36,7 @@ export { default as AllStudents } from './authAdmin/AllStudents.jsx';
 export { default as AdminHome } from './authAdmin/AdminHome.jsx'
 export { default as AddCourse } from './authAdmin/Course.jsx'
 export { default as AdminLogin}  from './authAdmin/AdminLogin.jsx'
-
+export { default as PostStudentData } from './authAdmin/postStudentData.jsx'
 
 
 // from assets folder

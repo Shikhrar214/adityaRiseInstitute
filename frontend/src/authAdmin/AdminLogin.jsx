@@ -21,7 +21,9 @@ const handleChange = (e) => {
 
 const handleSubmit = async (e) => {
   e.preventDefault();
-        await axios.post("/api/v1/admins/login",formData, {withCredentials: true})
+       
+  try {
+       await axios.post("/api/v1/admins/login",formData, {withCredentials: true})
         .then((responce)=>alert("loggedin Successfull"))
         .then(()=>navigate("/adminDashboard"))
         .catch((error)=>{
@@ -30,8 +32,6 @@ const handleSubmit = async (e) => {
           console.log(error);
           
         })
-  try {
-      
   } catch (error) {
       console.log("err ===>", error);
       
@@ -40,6 +40,16 @@ const handleSubmit = async (e) => {
 }
 
 
+
+const forgotPassword = async() => {
+    navigate("/admin-reset-pass") 
+  
+  return (
+    <>
+      hello
+    </>
+  )
+}
   return (
     <>
 
@@ -81,7 +91,12 @@ const handleSubmit = async (e) => {
                                   <button 
                                   className="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition duration-200 my-8"
                                   type='submit'>
-                                      Login
+                                      Login 
+                                  </button>
+                                  <button
+                                  onClick={forgotPassword}
+                                  >
+                                      <span>forgot  Password?  click</span>
                                   </button>
                               </form>
                           </div>

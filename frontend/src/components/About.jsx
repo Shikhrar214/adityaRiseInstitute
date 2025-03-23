@@ -8,13 +8,13 @@ function About() {
         <>
         <h1 className='bg-slate-950 text-gray-300 pl-48 m-5 rounded-full text-4xl font-bold'>About Us</h1>
 
-        <div className='bg-orange-50  mx-5  rounded-2xl '>
+        <div className='bg-orange-100  mx-5  rounded-2xl p-2'>
 
             <div className='p-8 lg:flex '>
                 <div 
-                className='w-64 h-64 '
+                className='w-64 h-64  border-orange-800 rounded-2xl'
                 >
-                    <img src={AvneeshPandey} alt="Faculty Image" class="w-full h-full object-contain" />
+                    <img src={AvneeshPandey} alt="Faculty Image" class="w-full h-full object-contain bg-gray-200 rounded-2xl" />
                     
                 </div>
                 
@@ -28,7 +28,7 @@ function About() {
                 <div 
                 className='w-64 h-64 '
                 >
-                    <img src={GarimaPandey} alt="Faculty Image" class="w-full h-full object-contain" />
+                    <img src={GarimaPandey} alt="Faculty Image" class="w-full h-full object-contain  bg-gray-200 rounded-2xl" />
                     
                 </div>
                 
@@ -43,7 +43,7 @@ function About() {
                 <div 
                 className='w-64 h-64 '
                 >
-                    <img src={AbhayPandey} alt="Faculty Image" class="w-full h-full object-contain" />
+                    <img src={AbhayPandey} alt="Faculty Image" class="w-full h-full object-contain  bg-gray-200 rounded-2xl" />
                     
                 </div>
                 
@@ -58,7 +58,7 @@ function About() {
                 <div 
                 className='w-64 h-64 '
                 >
-                    <img src={VinodKumar} alt="Faculty Image" class="w-full h-full object-contain" />
+                    <img src={VinodKumar} alt="Faculty Image" class="w-full h-full object-contain  bg-gray-200 rounded-2xl" />
                     
                 </div>
                 
@@ -73,7 +73,7 @@ function About() {
                 <div 
                 className='w-64 h-64 '
                 >
-                    <img src={PriyankJaiswal} alt="Faculty Image" class="w-full h-full object-contain" />
+                    <img src={PriyankJaiswal} alt="Faculty Image" class="w-full h-full object-contain  bg-gray-200 rounded-2xl" />
                     
                 </div>
                 
@@ -88,7 +88,7 @@ function About() {
                 <div 
                 className='w-64 h-64 '
                 >
-                    <img src={RavinderVerma} alt="Faculty Image" class="w-full h-full object-contain" />
+                    <img src={RavinderVerma} alt="Faculty Image" class="w-full h-full object-contain  bg-gray-200 rounded-2xl" />
                     
                 </div>
                 
@@ -103,7 +103,7 @@ function About() {
                 <div 
                 className='w-64 h-64 '
                 >
-                    <img src={SatyamSrivastav} alt="Faculty Image" class="w-full h-full object-contain" />
+                    <img src={SatyamSrivastav} alt="Faculty Image" class="w-full h-full object-contain  bg-gray-200 rounded-2xl" />
                     
                 </div>
                 

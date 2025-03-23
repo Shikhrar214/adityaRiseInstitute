@@ -6,30 +6,31 @@ import {AbhayPandey, AvneeshPandey, Logo, RavinderVerma} from '../assets/images.
 function Gallary() {
     const images = [
         {
-          original: RavinderVerma,
-          thumbnail: RavinderVerma,
+          original: AvneeshPandey,
+          thumbnail: AvneeshPandey,
         },
         {
           original: AbhayPandey,
           thumbnail: AbhayPandey,
         },
         {
-          original: AvneeshPandey,
-          thumbnail: AvneeshPandey,
-        },
-        {
           original: Logo,
           thumbnail: Logo,  
         },
+        {
+          original: RavinderVerma,
+          thumbnail: RavinderVerma,
+        },
+        
       ];
     
 
 
     return (
         <>
-            <div className=''>
+            <div className='w-2/4  justify-center items-center mx-auto flex'>
                 
-                <ImageGallery  items={images} />;
+                <ImageGallery className=""  items={images}  />;
             </div>
         </>
     )
