@@ -258,10 +258,24 @@ const resetPassword = async(req, res) => {
         if (!responceOwner) {
             return res.status(400).json("some error occurred please try again")
         }
-        const owner = await Owner.findOne({email});
+        
+        // compare otp 
+        const otpValidation = responceOwner.otp == otp
+
+        if (!otpValidation) {
+            return responceOwner.status(400).json({
+                success: false,
+                message: "otp error"
+            })
+        }
+        const responceOwnerEmail = responceOwner.email
+        const owner = await Owner.findOne({responceOwnerEmail});
         if (!owner) {
             return res.status(400).json("unauthorised request")
         }
+
+        owner.password = newPassword
+        await owner.save({validateBeforeSave: false})
 
         res.status(200).json({
             responceOwner,

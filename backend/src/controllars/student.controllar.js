@@ -80,7 +80,6 @@ const createStudents = async (req, res) => {
                 message: "Signature image local path not found"
             });
         }
-
         // Upload images to Cloudinary
         const photoRes = await uploadOnCloudinary(sImageLocalPath);
         const signatureRes = await uploadOnCloudinary(sSignaturePhoto);
@@ -108,6 +107,8 @@ const createStudents = async (req, res) => {
             signature: signatureRes.url,
         });
 
+        console.log("i am here");
+        
         const registeredStudent = await newStudent.save();
 
         const id = registeredStudent.ID
@@ -284,6 +285,11 @@ const logoutStudent = async (req, res) => {
     } catch (error) {
         error: `${error}`
     }
+}
+
+
+const resetPassword = async (req, res) => {
+    // const {} = req.body
 }
 
 export { 

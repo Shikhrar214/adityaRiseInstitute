@@ -9,7 +9,7 @@ const uploadOnCloudinary = async (localFilePath) => {
     // not Available local file path
     try {
         if(!localFilePath) return "local file path not found"
-        // console.log("local path found", `./${localFilePath}`);
+        console.log("local path found", `./${localFilePath}`);
         
         
         const cloudinaryResponce = await cloudinary.uploader.upload(localFilePath, {
@@ -17,7 +17,7 @@ const uploadOnCloudinary = async (localFilePath) => {
         })
 
         // if file uploaded sucessfully
-        // console.log("file uploaded sucessfully: ",cloudinaryResponce.url );
+        console.log("file uploaded sucessfully: ",cloudinaryResponce.url );
         fs.unlinkSync(localFilePath)
         return cloudinaryResponce
         

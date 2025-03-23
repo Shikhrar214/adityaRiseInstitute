@@ -29,7 +29,7 @@ const mailer = async (email, subject, fullName, pass, id) => {
             html: `<b>hello ${fullName}! your email: ${email} and password: ${pass} world?</b> </br> <p> ${id?`your registerd id: ${id}`:""} </p>`, 
           });
           return info
-          // console.log("Message sent: %s", info.messageId);
+          console.log("Message sent: %s", info.messageId);
     } catch (error) {
         console.log(error);
         

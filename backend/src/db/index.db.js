@@ -9,7 +9,7 @@ const connectDB = async () => {
         console.log('db connected db_HOST: ', connectionInstence.connection.host);
     } catch (error) {
         console.log("mongodb connection failed : please check your internnet connection || check database connection",error);
-        
+        return 
     }
 }
 
