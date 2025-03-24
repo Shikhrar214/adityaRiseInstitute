@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import { AdityaChaudha, AdityaVerma, AnchalSingh, DikshaVermaOlevel, KajalHuptaCCC, Logo, NaveenKumar, SundramKashyapCCC, SaktiKumarSingh, KishanVerma, Mukesh, ManishKumar, PrachiGupta, HarshitaUpadhyay, KomalChaurasia, KrishnaVermaAdca, LalitaUpadhyay } from '../assets/images'
+import { AdityaChaudha, AdityaVerma, AnchalSingh, DikshaVermaOlevel, KajalHuptaCCC, Logo, NaveenKumar, SundramKashyapCCC, SaktiKumarSingh, KishanVerma, Mukesh, ManishKumar, PrachiGupta, HarshitaUpadhyay, KomalChaurasia, KrishnaVermaAdca, LalitaUpadhyay, AbhishekMaurya } from '../assets/images'
 
 function Home() {
     return (
@@ -124,7 +124,7 @@ ccc */}
                     </div>
 
 
-                    <div className='m-auto'>
+                    {/* <div className='m-auto'>
                         <div>
                         <img 
                         className="h-52 w-52 rounded-2xl"
@@ -132,7 +132,7 @@ ccc */}
                         </div>
                         <h1 className='bg-orange-500 rounded-lg my-2 p-2 font-semibold '>Aditya Verma</h1>
                         <p>"Hi, I’m <span className='font-bold text-orange-600'>Aditya Verma</span>. My experience here while completing the <span className='font-bold text-orange-600'>O-Level</span> course has been incredible. The institute’s focus on individual attention and skill-building impressed me the most. I’m grateful for the opportunities provided, and I highly recommend this institute to aspiring students who wish to excel in computer science."</p>
-                    </div>
+                    </div> */}
 
                     <div className='m-auto'>
                         <div>
@@ -246,6 +246,17 @@ ccc */}
                         </div>
                         <h1 className='bg-orange-500 rounded-lg my-2 p-2 font-semibold '>Naveen Kumar</h1>
                         <p>"I’m <span className='font-bold'>Naveen Kumar</span> , and I’m thrilled to have completed my <span className='font-bold text-orange-600'>CCC</span> course in computer science at this institute. The well-crafted curriculum and inspiring mentorship prepared me for real-world challenges. I highly recommend this institute to anyone seeking quality education and a supportive environment. It’s been an unforgettable journey!"</p>
+                    </div>
+
+
+                    <div className='m-auto'>
+                        <div>
+                        <img 
+                        className="h-52 w-52 rounded-2xl"
+                        src={AbhishekMaurya} alt="reviewer image" />
+                        </div>
+                        <h1 className='bg-orange-500 rounded-lg my-2 p-2 font-semibold '>Abhishek Maurya</h1>
+                        <p>"Hi, I’m <span className='font-bold text-orange-600'>Abhishek Maurya</span>. My experience here while completing the <span className='font-bold text-orange-600'>CCC</span> course has been incredible. The institute’s focus on individual attention and skill-building impressed me the most. I’m grateful for the opportunities provided, and I highly recommend this institute to aspiring students who wish to excel in computer science."</p>
                     </div>
 
 

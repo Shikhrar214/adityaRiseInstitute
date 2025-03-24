@@ -15,17 +15,14 @@ function PostStudentData() {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const data = new FormData();
         data.append("adminID", formData.adminID);
         data.append("studentID", formData.studentID);
         data.append("file", formData.file);
         
-        fetch("/api/post-student-data", {
-            method: "POST",
-            body: data,
-        })
+        await axios.post("/api/post-student-data", data)
         .then((response) => response.json())
         .then((result) => {
             console.log("Success:", result);
@@ -63,7 +60,7 @@ function PostStudentData() {
                     required
                     className="w-full p-2 border border-gray-300 rounded"
                 />
-                <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Submit</button>
+                <button type="submit" className="w-full bg-orange-500 text-white p-2 rounded hover:bg-orange-600">Submit</button>
             </form>
         </div>
     );

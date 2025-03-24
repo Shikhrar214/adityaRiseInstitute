@@ -13,7 +13,7 @@ function Courses() {
 //   update course 
     const editCourse = async (id) => {
         
-       const responce = await axios.put(`/api/course/${id}`,updatedData);
+       const responce = await axios.put(`/api/v1/courses/course/${id}`,updatedData);
     };
 
 // delete course
@@ -21,7 +21,7 @@ function Courses() {
     const deleteCourse = async (id) => {
         
         alert(" Do you wants to delete ")
-        await axios.delete(`/api/course/${id}`)
+        await axios.delete(`/api/v1/courses/course/${id}`)
         .then(() => {
             alert("Course Deleted Sucessfully")
         })

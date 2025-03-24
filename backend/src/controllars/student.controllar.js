@@ -27,7 +27,7 @@ const createStudents = async (req, res) => {
 
         // Check if the student is already registered
         try {
-            const alreadyRegisteredStudent = await student.findOne({ $or: [{ mobile }, { aadhar }] });
+            const alreadyRegisteredStudent = await student.findOne({ $or: [{ email }, { aadhar }] });
             if (alreadyRegisteredStudent) {
                 return res.status(201).json({
                     success: false,

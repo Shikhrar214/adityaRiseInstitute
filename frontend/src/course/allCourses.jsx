@@ -4,7 +4,7 @@ function AllCourses() {
 
 
     const [data, setData] = useState([])
-    const [totalCourse, setTotalCourse] = useState(null);
+    const [totalCourse, setTotalCourse] = useState(0);
     
     const responce = async () => {
         await axios.get("/api/v1/courses/courses")
@@ -23,7 +23,7 @@ function AllCourses() {
     },[])
 
 
-    if (totalCourse === null) {
+    if (totalCourse === 0) {
         return <>
             
             <div className='h-48 bg-black'>

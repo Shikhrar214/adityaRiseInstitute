@@ -2,7 +2,6 @@ import { superAdmin } from "../models/superAdmin.models.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { mailer } from "../utils/nodeMailer.js";
 import jwt from "jsonwebtoken";
-import { sendOTP } from "./otpSend.controller.js";
 import { Otp } from "../models/otp.model.js";
 
 // BUSSINESS LOGIC
@@ -84,7 +83,10 @@ const createSuperAdmin = async (req, res) => {
                 })  
             }
         } catch (error) {
-            
+            return res(400).json({
+                success: false,
+                message: "user already registerd"
+            })
         }
         
            
@@ -312,6 +314,7 @@ const logoutAdmin = async (req, res) => {
     
 }
 
+// reset password
 const resetPassword = async (req, res) => {
     // get email, otp, password
     // find 
