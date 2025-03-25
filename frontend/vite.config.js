@@ -8,7 +8,8 @@ export default defineConfig({
    proxy: {
     '/api': {
       // target: 'http://localhost:4000',
-      target: "https://aditya-rise-institute-git-main-arcis-projects-2e5ddd3b.vercel.app",
+      // target: "https://aditya-rise-institute-git-main-arcis-projects-2e5ddd3b.vercel.app",
+      target: "https://aditya-rise-institute.vercel.app",
       changeOrigin: true 
       },
    }
