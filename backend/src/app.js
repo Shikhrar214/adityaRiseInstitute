@@ -35,7 +35,7 @@ app.use("/api/v1", otpRouter)
 
 
 // /api/ -----> 
-app.get("/",(req, res)=>{
+app.get("/api/v1",(req, res)=>{
     res.send("<h1>hello </br> you are WELCOME! </h1>")
 })
 
