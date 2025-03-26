@@ -9,6 +9,7 @@ const app = express()
 // middleware
 app.use(cors({
     origin: "https://arci-black.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
     credentials: true
 }))
 app.use(express.json())
