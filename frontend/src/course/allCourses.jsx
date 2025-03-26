@@ -12,6 +12,7 @@ function AllCourses() {
             setData(res.data.courses)
             setTotalCourse(res.data.courses.length)
             console.log ("trial + = ",res.data.courses);
+            console.log("data================",import.meta.env.BASE_URL);
             
         })
         console.log(data);

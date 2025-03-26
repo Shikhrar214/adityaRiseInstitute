@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
+import { meta } from '@eslint/js';
 
 function Courses() {
 
@@ -39,7 +40,7 @@ function Courses() {
             setData(res.data.courses)
             setrTotalCourse(res.data.courses.length)
             console.log ("trial + = ",res.data.courses);
-            
+            console.log("hellollololo");
         })
     }
     useEffect(()=>{
