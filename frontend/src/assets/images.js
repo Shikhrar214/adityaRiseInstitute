@@ -60,4 +60,9 @@ export {default as Img03 } from './gallary/03.jpeg'
 // export {default as Img1 } from './gallary/1.jpeg'
 // export {default as Img1 } from './gallary/1.jpeg'
 // export {default as Img1 } from './gallary/1.jpeg'
-// export {default as Img1 } from './gallary/1.jpeg'
+
+
+
+
+// chairman image
+export {default as ChairmanImg } from './chairman/Chairman.png'

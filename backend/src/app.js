@@ -8,7 +8,7 @@ const app = express()
 
 // middleware
 app.use(cors({
-    origin: "https://arci-black.vercel.app",
+    origin: process.env.FRONTEND_URL,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
     credentials: true
 }))

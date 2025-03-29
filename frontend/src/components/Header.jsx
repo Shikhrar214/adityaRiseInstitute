@@ -159,12 +159,12 @@ function Header() {
                         Login
                         </NavLink>
 
-                        <NavLink
+                        {/* <NavLink
                         to={"/logout"}
                         className="block text-gray-800 hover:text-orange-700 transition"
                         >
                         Logout
-                        </NavLink>
+                        </NavLink> */}
                     </div>
                     </div>
                 </nav>

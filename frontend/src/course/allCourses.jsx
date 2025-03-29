@@ -9,12 +9,13 @@ function AllCourses() {
     const responce = async () => {
         await axios.get("/api/v1/courses/courses")
         .then((res) => {
-            setData(res.data.courses)
+            setData(res.data?.courses)
             setTotalCourse(res.data.courses.length)
             console.log ("trial + = ",res.data.courses);
             console.log("data================",import.meta.env.BASE_URL);
             
         })
+        .catch(error => console.log(error))
         console.log(data);
         
     }
@@ -35,7 +36,7 @@ function AllCourses() {
             <div className='bg-orange-400 flex justify-center items-center h-96'>
                 <h1 className='text-white text-center items-center  font-bold text-3xl'>Please Contact us to get more information: <a 
                 className='font-bold text-3xl'
-                href="tel:1010101010">1010101010</a></h1>
+                href="tel:8467957047">8467957047</a></h1>
             </div>
             
         </>
