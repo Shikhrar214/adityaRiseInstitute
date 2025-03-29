@@ -7,17 +7,20 @@ function AllCourses() {
     const [totalCourse, setTotalCourse] = useState(0);
     
     const responce = async () => {
-        await axios.get("/api/v1/courses/courses")
-        .then((res) => {
-            setData(res.data?.courses)
-            setTotalCourse(res.data.courses.length)
-            console.log ("trial + = ",res.data.courses);
-            console.log("data================",import.meta.env.BASE_URL);
-            
-        })
-        .catch(error => console.log(error))
-        console.log(data);
-        
+        try {
+          const res = await axios.get("/api/v1/courses/courses")
+          console.log(res);
+          if (!res) {
+            console.log("data not found", data);
+          }
+          setTotalCourse(res.data.courses.length)
+          setData(res.data?.courses)
+          console.log("acd == ==",res.data.courses);
+          
+        } catch (error) {
+          console.log(error);
+          console.log(data);            
+        }
     }
 
     useEffect(()=>{

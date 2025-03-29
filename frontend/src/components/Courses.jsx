@@ -35,7 +35,7 @@ function Courses() {
 // fetch data
 
     const responce = async () => {
-        await axios.get("/v1/courses/courses")
+        await axios.get("/api/v1/courses/courses")
         .then((res) => {
             console.log(res);
             setData(res.data.courses)

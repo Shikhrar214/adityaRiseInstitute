@@ -29,6 +29,13 @@ function About() {
         "Hello, I’m Garima Pandey, the Director of this institute. With 4 years of expertise in Tally and GST, I specialize in streamlining financial operations and ensuring compliance with the latest tax regulations. My role involves overseeing the institute’s strategic direction while maintaining a strong focus on efficient financial management. I am passionate about creating a structured and transparent environment that fosters growth and success. By integrating my knowledge of Tally and GST into our processes, I ensure accuracy, accountability, and continuous improvement. It’s my privilege to lead this institute toward excellence and innovation in every aspect of our work.",
     },
     {
+      name: "Ravindra Verma",
+      image: RavinderVerma,
+      role: "Faculty Member",
+      description:
+        "Hello, I’m Ravindra Verma, a committed Faculty Member at this institute. I take pride in mentoring students and helping them achieve their academic and professional aspirations. My approach focuses on creating a dynamic and engaging learning environment where students can gain practical knowledge and develop essential skills for their future careers. I strive to inspire curiosity, critical thinking, and a passion for lifelong learning. Being a part of this institute allows me to contribute to shaping the future of our students and guiding them toward success with dedication and care",
+    },
+    {
       name: "Abhay Pandey",
       image: AbhayPandey,
       role: "Faculty Member",
@@ -50,13 +57,6 @@ function About() {
         "Hello, I’m Priyank Jaiswal, a dedicated Faculty Member at this institute. I am passionate about guiding students and helping them unlock their true potential through effective teaching and mentorship. My focus is on creating an interactive and practical learning environment where students can develop the knowledge and skills needed to succeed in their chosen fields. I believe in fostering curiosity, encouraging innovation, and supporting students as they work toward achieving their academic and professional goals. It’s an honor to contribute to their growth and be a part of this institute’s mission to deliver excellence in education.",
     },
     {
-      name: "Ravindra Verma",
-      image: RavinderVerma,
-      role: "Faculty Member",
-      description:
-        "Hello, I’m Ravindra Verma, a committed Faculty Member at this institute. I take pride in mentoring students and helping them achieve their academic and professional aspirations. My approach focuses on creating a dynamic and engaging learning environment where students can gain practical knowledge and develop essential skills for their future careers. I strive to inspire curiosity, critical thinking, and a passion for lifelong learning. Being a part of this institute allows me to contribute to shaping the future of our students and guiding them toward success with dedication and care",
-    },
-    {
       name: "Satyam Srivastav",
       image: SatyamSrivastav,
       role: "Faculty Member",
@@ -71,42 +71,41 @@ function About() {
         About Us
       </h1>
 
-      <div className="w-full m-5 bg-gray-800 text-white flex items-center justify-center p-6 rounded-2xl shadow-lg">
-        <div className="flex flex-col md:flex-row items-center gap-8 max-w-5xl w-full text-center md:text-left">
-          {/* Poster Image */}
-          <div className="w-48 h-48 md:w-56 md:h-56 bg-orange-500 rounded-xl flex items-center justify-center relative overflow-hidden shadow-md border-4 border-orange-300">
-            {/* Main Image (Chairman Image inside Poster Image) */}
-            <img
-              className="w-full h-full object-cover rounded-xl"
-              src={ChairmanImg}
-              alt="Chairman image"
-            />
-          </div>
+      <div className="my-4 p-6 mx-5 sm:m-8 sm:p-8 bg-gray-800 text-white flex items-center justify-center rounded-2xl">
+      <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8 max-w-6xl w-full text-center md:text-left">
+        {/* Poster Image */}
+        <div className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 bg-orange-500 rounded-xl flex items-center justify-center relative overflow-hidden shadow-md border-4 border-orange-300">
+          <img
+            className="w-full h-full object-cover rounded-xl"
+            src={ChairmanImg}
+            alt="Chairman"
+          />
+        </div>
 
-          {/* Content Section */}
-          <div className="flex flex-col gap-4 max-w-2xl">
-            <h2 className="text-3xl md:text-4xl font-bold text-orange-400">
-              Chairman Of Aditya Rise Computer Institute
-            </h2>
-            <p className="text-gray-300 text-sm md:text-lg leading-relaxed">
-              As the Chairman of Aditya Rise Computer Institute, I'm proud to
-              lead an institution dedicated to empowering students with the
-              knowledge and skills needed to succeed in the digital age. With a
-              career spanning several decades, I've had the privilege of
-              mentoring and guiding thousands of students, and I'm committed to
-              continuing this legacy. My mission is to make quality computer
-              education accessible to all, fostering creativity, critical
-              thinking, and problem-solving skills. I look forward to shaping
-              the next generation of leaders and innovators.
-            </p>
-            <span className="text-lg font-semibold text-orange-300">
-              Aditya Pandey
-            </span>
-          </div>
+        {/* Content Section */}
+        <div className="flex flex-col gap-4 max-w-2xl px-4 sm:px-6 md:px-8 py-4 sm:py-6 md:py-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-orange-400">
+            Chairman Of Aditya Rise Computer Institute
+          </h2>
+          <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed">
+            As the Chairman of Aditya Rise Computer Institute, I'm proud to lead an institution
+            dedicated to empowering students with the knowledge and skills needed to succeed in
+            the digital age. With a career spanning several decades, I've had the privilege of
+            mentoring and guiding thousands of students, and I'm committed to continuing this
+            legacy. My mission is to make quality computer education accessible to all, fostering
+            creativity, critical thinking, and problem-solving skills. I look forward to shaping
+            the next generation of leaders and innovators.
+          </p>
+          <span className="text-base sm:text-lg font-semibold text-orange-300">
+            Aditya Pandey
+          </span>
         </div>
       </div>
+    </div>
 
-      <div className="bg-orange-100 mx-5 rounded-2xl p-4 md:p-6">
+      {/*  */}
+
+      <div className="bg-orange-100 mx-5 rounded-2xl p-4 md:p-6 ">
         {facultyMembers.map((member, index) => (
           <div
             key={index}
@@ -129,7 +128,7 @@ function About() {
             </div>
           </div>
         ))}
-      </div>
+      </div>  
     </>
   );
 }
