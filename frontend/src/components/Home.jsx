@@ -1,10 +1,26 @@
 import React from 'react'
 import { Link } from 'react-router'
+import { Helmet } from 'react-helmet-async'
+
+
 import { AdityaChaudha, AdityaVerma, AnchalSingh, DikshaVermaOlevel, KajalHuptaCCC, Logo, NaveenKumar, SundramKashyapCCC, SaktiKumarSingh, KishanVerma, Mukesh, ManishKumar, PrachiGupta, HarshitaUpadhyay, KomalChaurasia, KrishnaVermaAdca, LalitaUpadhyay, AbhishekMaurya } from '../assets/images'
 
 function Home() {
     return (
         <>
+
+            <Helmet>
+                <title>My Home Page - ARCI</title>
+                <meta name="description" content="Welcome to my home page. Learn more about our products and services." />
+                <meta name="keywords" content="home, ARCI, arci, aditya-rice-computer-institute" />
+                <meta property="og:title" content="My Home Page - ARCI" />
+                <meta property="og:description" content="Welcome to my home page. Learn more about our products and services." />
+                <meta property="og:image" content="URL_TO_YOUR_IMAGE" />
+                <meta property="og:url" content="https://arci-pi.vercel.app/" />
+                <meta property="og:type" content="website" />
+            </Helmet>
+
+
             <div className='flex  w-full '>
 
 

@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /temp/
+Allow: /public/
+Sitemap: https://arci-pi.vercel.app/sitemap.xml

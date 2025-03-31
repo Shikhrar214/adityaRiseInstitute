@@ -33,12 +33,7 @@ import {
   PostStudentData
 } from './index'
 import { createBrowserRouter, RouterProvider } from "react-router";
-// import OwnerDashboard from './owner/ownerDashboard';
-// import Admins from './owner/admins';
-// import Students from './owner/students';
-// import Dashboard from './authAdmin/Dashboard';
-// import Course from './authAdmin/Course';
-// import StudentHome from './authStudent/studentHome';
+
 
 function App() {
   const router = createBrowserRouter([

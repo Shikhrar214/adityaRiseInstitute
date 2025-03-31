@@ -27,21 +27,19 @@ function AllCourses() {
        responce()
     },[])
 
+    const SimpleLoading = () => {
+      return(
+          <div className="flex items-center justify-center h-screen">
+              <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"></div>
+          </div>
+      );
+    };
 
     if (totalCourse === 0) {
-        return <>
-            
-            <div className='h-48 bg-black'>
-                    <p className='text-orange-500 text-center font-extrabold text-4xl '>"I sincerely apologize for my actions. I realize they may have hurt or upset you, and that was never my intention. I deeply regret what happened and take full responsibility. Please know I am truly sorry and committed to making things right. Your forgiveness would mean so much."</p>
-            </div>
-
-
-            <div className='bg-orange-400 flex justify-center items-center h-96'>
-                <h1 className='text-white text-center items-center  font-bold text-3xl'>Please Contact us to get more information: <a 
-                className='font-bold text-3xl'
-                href="tel:8467957047">8467957047</a></h1>
-            </div>
-            
+        return<>
+          <div className="flex items-center justify-center h-screen">
+            <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-green-500"></div>
+        </div>
         </>
     }
 
