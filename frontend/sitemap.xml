@@ -6,4 +6,10 @@
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
+  <url>
+    <loc>https://arci-pi.vercel.app/home</loc>
+    <lastmod>2023-10-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
   </urlset>
