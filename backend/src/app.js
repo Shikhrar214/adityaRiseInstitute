@@ -31,7 +31,7 @@ app.use("/api/v1/admins", sAdminrouter)
 app.use("/api/v1/students", studentRouter)
 app.use("/api/v1/courses", courseRouter)
 app.use("/api/v1/owner", ownerRouter)
-app.use("/api/v1", otpRouter)
+app.use("/api/v1/otp", otpRouter)
 
 
 
@@ -41,6 +41,8 @@ app.get("/api/v1",(req, res)=>{
 })
 
 
-
+app.get("/",(req, res)=>{
+    res.send("<h1></br> RUNNING........................ </h1>")
+})
 
 export {app}
