@@ -76,7 +76,7 @@ const StudentRegistration = () => {
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-5">
       <div className="bg-white p-6 rounded-md shadow-md w-full max-w-2xl">
         <h2 className="text-2xl font-bold mb-5">Student Registration</h2>
-        <form onSubmit={handleSubmit} enctype="multipart/form-data"  >
+        <form onSubmit={handleSubmit} encType="multipart/form-data"  >
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block mb-2">Full Name</label>

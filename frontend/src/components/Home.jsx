@@ -10,7 +10,7 @@ function Home() {
         <>
 
             <Helmet>
-                <title>My Home Page - ARCI</title>
+                <title>ARCI-Babhnan</title>
                 <meta name="description" content="Welcome to my home page. Learn more about our products and services." />
                 <meta name="keywords" content="home, ARCI, arci, aditya-rice-computer-institute" />
                 <meta property="og:title" content="My Home Page - ARCI" />
