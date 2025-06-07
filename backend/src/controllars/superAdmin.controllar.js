@@ -271,8 +271,7 @@ const loginSuperAdmin = async (req, res) => {
 
 const logoutAdmin = async (req, res) => {
     try {
-        // get id from req.cookie
-        // set cookie = null
+        
         const id = req.admin._id
         
         
@@ -316,82 +315,76 @@ const logoutAdmin = async (req, res) => {
 
 // reset password
 const resetPassword = async (req, res) => {
-    // get email, otp, password
-    // find 
     try {
-        const {email, newPassword, otp} = req.body;
-        if (!email && !otp) {
-            return res.status(400).json(
-                {
-                    success: false,
-                    message: "email and otp required"
-                }
-            )
-            
-        }
+        const { email, newPassword, otp } = req.body;
 
-        const savedOtp = await Otp.findOne({email});
-        if (!savedOtp) {
-            return res.status(400).json(
-                {
-                    success: false,
-                    message: "otp not found"
-                }
-            )
-            
-        }
-
-        if (savedOtp.otp !== otp) {
-            return res.status(400).json(
-                {
-                    success: false,
-                    message: "otp not matched"
-                }
-            )
-            
+        // Validate input
+        if (!email || !otp) {
+            return res.status(400).json({
+                success: false,
+                message: "Email and OTP are required",
+            });
         }
 
         if (!newPassword) {
-            return res.status(400).json(
-                {
-                    success: false,
-                    message: "password required"
-                }
-            )
-            
+            return res.status(400).json({
+                success: false,
+                message: "New password is required",
+            });
         }
 
-        const admin = await superAdmin.findOne({email});
+        // Find the OTP record
+        const savedOtp = await Otp.findOne({ email });
+        if (!savedOtp) {
+            return res.status(400).json({
+                success: false,
+                message: "OTP not found",
+            });
+        }
+
+        // Check if OTP matches
+        if (savedOtp.otp !== otp) {
+            return res.status(400).json({
+                success: false,
+                message: "OTP does not match",
+            });
+        }
+
+        // Optional: Check if OTP has expired
+        if (savedOtp.expiry && savedOtp.expiry < Date.now()) {
+            return res.status(400).json({
+                success: false,
+                message: "OTP has expired",
+            });
+        }
+
+        // Find the admin by email
+        const admin = await superAdmin.findOne({ email });
         if (!admin) {
-            return res.status(400).json(
-                {
-                    success: false,
-                    message: "admin not found"
-                }
-            )
-            
+            return res.status(404).json({
+                success: false,
+                message: "Admin not found",
+            });
         }
 
+        
         admin.password = newPassword;
         await admin.save();
-        return res.status(200).json(
-            {
-                success: true,
-                message: "password reset successfully"
-            }
-        )
 
-        
-
-        
+        // Respond with success
+        return res.status(200).json({
+            success: true,
+            message: "Password reset successfully",
+        });
     } catch (error) {
+        console.error("Error resetting password:", error);
         return res.status(500).json({
             success: false,
-            error: error || "internal server error", 
-            message: `error found = ${error}`
-        })
+            message: "Internal server error",
+            error: error.message || error,
+        });
     }
-}
+};
 
 
 

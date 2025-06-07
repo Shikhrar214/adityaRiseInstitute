@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
    proxy: {
     '/api': {
-      target: "https://aditya-rise-institute.vercel.app",
+      target: "https://adityariseinstitute.onrender.com",
       changeOrigin: true 
       },
    }

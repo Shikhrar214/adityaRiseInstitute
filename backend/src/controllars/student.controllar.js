@@ -289,8 +289,47 @@ const logoutStudent = async (req, res) => {
 
 
 const resetPassword = async (req, res) => {
-    // const {} = req.body
-}
+    try {
+        const { email, newPassword } = req.body;
+
+        // Validate input
+        if (!email || !newPassword) {
+            return res.status(400).json({
+                success: false,
+                message: "Email and new password are required",
+            });
+        }
+
+        // Find the student by email
+        const studentRecord = await student.findOne({ email });
+        if (!studentRecord) {
+            return res.status(404).json({
+                success: false,
+                message: "Student not found",
+            });
+        }
+
+        // Hash the new password
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+        // Update the student's password
+        studentRecord.password = hashedPassword;
+        await studentRecord.save();
+
+        // Respond with success
+        res.status(200).json({
+            success: true,
+            message: "Password reset successfully",
+        });
+    } catch (error) {
+        console.error("Error resetting password:", error);
+        res.status(500).json({
+            success: false,
+            message: "Internal server error",
+            error: `${error}`,
+        });
+    }
+};
 
 export { 
     createStudents, 
